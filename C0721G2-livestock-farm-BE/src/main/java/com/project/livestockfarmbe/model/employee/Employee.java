@@ -15,6 +15,10 @@ import java.util.List;
 @Entity(name = "employees")
 @SQLDelete(sql = "UPDATE employees SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
+@NamedStoredProcedureQuery(name = "Employee.getEmployeesBySearchField",
+        procedureName = "GET_EMPLOYEES_BY_SEARCH_FIELD", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "model_in", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "count_out", type = Employee.class)})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
