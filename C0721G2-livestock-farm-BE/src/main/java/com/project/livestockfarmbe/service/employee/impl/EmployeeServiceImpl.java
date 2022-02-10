@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @Override
     public Page<Employee> findAllEmployeeBySearchField(String name, String email, String address, String phone_number, String id_card, String username, Pageable pageable) {
 //        return iEmployeeRepository.findAllEmployeeBySearchField(name,email,address,phone_number,id_card,username,pageable);
-        return iEmployeeRepository.findAllEmployeeBySearch(name,username,pageable);
+        return iEmployeeRepository.findAllEmployeeByUsername(username,pageable);
     }
 
     @Override

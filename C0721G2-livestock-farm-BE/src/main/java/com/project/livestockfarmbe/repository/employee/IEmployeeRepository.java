@@ -42,22 +42,16 @@ public interface IEmployeeRepository extends JpaRepository<Employee, String> {
 
     @Query(value = "select * from employees e\n" +
             " join app_users a on e.app_user_id = a.id" +
-            " where username like concat('%',trim(:username),'%') and e.deleted = false and a.deleted = false" +
-            " and (`name` like concat('%',trim(:search),'%') \n" +
-            " or email like concat('%',trim(:search),'%')\n" +
-            " or address like concat('%',trim(:search),'%')\n" +
-            " or phone_number like concat('%',trim(:search),'%')\n" +
-            " or id_card like concat('%',trim(:search),'%'))\n",
-            nativeQuery = true
-    )
-    Page<Employee> findAllEmployeeBySearch(@Param("search") String search,
-                                           @Param("username") String username,
+            " where username like concat('%',trim(:username),'%') and e.deleted = false and a.deleted = false",
+            nativeQuery = true)
+    Page<Employee> findAllEmployeeByUsername(@Param("username") String username,
                                            @Param("page") Pageable pageable);
 
 
     //    TranNN - List Employees
-    @Query(value = "select * from employees e join app_users_roles r on e.app_user_id = r.app_users_id \n" +
-            "where roles_id  like concat('%',trim(:roles_id),'%') ",
+    @Query(value = "select * from employees e\n" +
+            " join app_users_roles r on e.app_user_id = r.app_users_id \n" +
+            " where roles_id  like concat('%',trim(:roles_id),'%') and e.deleted = false",
             nativeQuery = true
     )
     Page<Employee> findAllEmployeeByRole(@Param("roles_id") Integer roles_id, @Param("page") Pageable pageable);
