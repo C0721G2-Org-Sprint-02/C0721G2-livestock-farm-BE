@@ -1,5 +1,6 @@
 package com.project.livestockfarmbe.service.employee;
 
+import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,16 +11,9 @@ import java.util.Optional;
 public interface IEmployeeService {
 
     //    TranNN - List Employees
-    Page<Employee> findAllEmployee(Pageable pageable);
+    Page<EmployeeServiceDTO> employeeList (String search, String roles_id, Pageable pageable);
 
-    Page<Employee> findAllEmployeeBySearchField(String name, String email,
-                                                String address, String phone_number,
-                                                String id_card, String username,
-                                                Pageable pageable);
-    Page<Employee> searchEmployee(String search, Pageable pageable);
-
-    Page<Employee> findAllEmployeeByByRole(Integer roles_id, Pageable pageable);
-
+    Page<EmployeeServiceDTO> findByEmployeeByName (String search, Pageable pageable);
 
     Optional<Employee> findByIdOp(String id);
 

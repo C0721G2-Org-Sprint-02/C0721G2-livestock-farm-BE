@@ -1,6 +1,8 @@
 package com.project.livestockfarmbe.controller;
 
+import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.employee.Employee;
+import com.project.livestockfarmbe.repository.employee.IEmployeeRepository;
 import com.project.livestockfarmbe.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,94 +23,53 @@ public class EmployeeController {
     IEmployeeService iEmployeeService;
 
 
-    //    TranNN - List Employees
-    @GetMapping(value = "/list")
-    public ResponseEntity<Page<Employee>> showListEmployee(@RequestParam(defaultValue = "0") Integer page,
-                                                           @RequestParam(defaultValue = "id") String sort,
-                                                           @RequestParam(defaultValue = "0") Integer direction,
-                                                           @RequestParam(defaultValue = "", value = "name") String name,
-                                                           @RequestParam(defaultValue = "", value = "email") String email,
-                                                           @RequestParam(defaultValue = "", value = "address") String address,
-                                                           @RequestParam(defaultValue = "", value = "phone_number") String phone_number,
-                                                           @RequestParam(defaultValue = "", value = "id_card") String id_card,
-                                                           @RequestParam(defaultValue = "", value = "username") String username) {
-        Pageable pageable;
-        if (direction == 0) {
-            pageable = PageRequest.of(page, 4, Sort.by(sort).ascending());
-        } else {
-            pageable = PageRequest.of(page, 4, Sort.by(sort).descending());
-        }
-        Page<Employee> employeeList;
-        if (name.equals("") && email.equals("") && address.equals("") && phone_number.equals("") && id_card.equals("") && username.equals("")) {
-            employeeList = iEmployeeService.findAllEmployee(pageable);
-        } else {
-            employeeList = iEmployeeService.findAllEmployeeBySearchField
-                    (name, email, address, phone_number, id_card, username, pageable);
-            ;
-        }
-        if (employeeList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employeeList, HttpStatus.OK);
-    }
-
-    //    TranNN - List Employees
-    @GetMapping(value = "/list-by-role")
-    public ResponseEntity<Page<Employee>> showListEmployeeByRole(@RequestParam(defaultValue = "0") Integer page,
-                                                                 @RequestParam(defaultValue = "id") String sort,
-                                                                 @RequestParam(defaultValue = "0") Integer direction,
-                                                                 @RequestParam(defaultValue = "0", value = "role") Integer role) {
-        Pageable pageable;
-        pageable = PageRequest.of(page, 4);
-//        if (direction == 0) {
-//            pageable = PageRequest.of(page, 4, Sort.by(sort).ascending());
-//        } else {
-//            pageable = PageRequest.of(page, 4, Sort.by(sort).descending());
-//        }
-        Page<Employee> employeeList;
-        if (role == 0) {
-            employeeList = iEmployeeService.findAllEmployee(pageable);
-        } else {
-            employeeList = iEmployeeService.findAllEmployeeByByRole(role, pageable);
-        }
-        if (employeeList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employeeList, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/search")
-    public ResponseEntity<Page<Employee>> searchEmployee(@RequestParam(defaultValue = "0") Integer page,
-                                                         @RequestParam(defaultValue = "id") String sort,
-                                                         @RequestParam(defaultValue = "0") Integer direction, @RequestParam(defaultValue = "", value = "search") String search) {
-        Pageable pageable;
-        pageable = PageRequest.of(page, 4);
-//        if (direction == 0) {
-//            pageable = PageRequest.of(page, 4, Sort.by(sort).ascending());
-//        } else {
-//            pageable = PageRequest.of(page, 4, Sort.by(sort).descending());
-//        }
-        Page<Employee> employeeList;
-        if (search.equals("")) {
-            employeeList = iEmployeeService.findAllEmployee(pageable);
-        } else {
-            employeeList = iEmployeeService.searchEmployee(search, pageable);
-        }
-        if (employeeList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employeeList, HttpStatus.OK);
-    }
-
     //    TranNN - Delete Employee
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Employee> delete(@PathVariable String id) {
-        System.out.println(id);
         Optional<Employee> employeeOptional = this.iEmployeeService.findByIdOp(id);
         if (!employeeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         iEmployeeService.deleteById(id);
         return new ResponseEntity<>(employeeOptional.get(), HttpStatus.OK);
+    }
+
+
+    //    TranNN - List Employee
+    @GetMapping("/list")
+    public ResponseEntity<Page<EmployeeServiceDTO>> findAllEmployees(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer sort,
+                                                            @RequestParam(defaultValue = "0") Integer direction, @RequestParam(defaultValue = "", value = "search") String search, @RequestParam(defaultValue = "", value = "role") String role) {
+        Pageable pageable;
+        if (role.equals("0")) {
+            role = "";
+        }
+        switch (sort) {
+            case 1:
+                pageable = PageRequest.of(page, 4, Sort.by("name").ascending());
+                break;
+            case 2:
+                pageable = PageRequest.of(page, 4, Sort.by("name").descending());
+                break;
+            case 3:
+                pageable = PageRequest.of(page, 4, Sort.by("address").ascending());
+                break;
+            case 4:
+                pageable = PageRequest.of(page, 4, Sort.by("address").descending());
+                break;
+            case 5:
+                pageable = PageRequest.of(page, 4, Sort.by("date_of_birth").ascending());
+                break;
+            case 6:
+                pageable = PageRequest.of(page, 4, Sort.by("date_of_birth").descending());
+                break;
+            default:
+                pageable = PageRequest.of(page, 4, Sort.by("id").ascending());
+        }
+        Page<EmployeeServiceDTO> dtoPage;
+        dtoPage = iEmployeeService.findByEmployeeByName(search,pageable);
+        if (dtoPage.isEmpty()){
+            dtoPage = iEmployeeService.employeeList(search, role, pageable);
+        }
+        return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
 }
