@@ -16,14 +16,14 @@ import java.time.LocalDate;
 
 import java.util.List;
 
-@Entity(name = "inviduals")
-@SQLDelete(sql = "UPDATE inviduals SET deleted = true WHERE id=?")
+@Entity(name = "individuals")
+@SQLDelete(sql = "UPDATE individuals SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class Individual {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invidual_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "individuals_seq")
     @GenericGenerator(
-            name = "invidual_seq",
+            name = "individuals_seq",
             strategy = "com.project.livestockfarmbe.customid.CustomIdGenerator",
             parameters = {
                     @Parameter(name = CustomIdGenerator.INCREMENT_PARAM, value = "1"),
