@@ -1,17 +1,22 @@
 package com.project.livestockfarmbe.model.buyIndividual;
 
 import com.project.livestockfarmbe.customid.CustomIdGenerator;
+import net.bytebuddy.implementation.bind.annotation.Empty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity(name = "buyIndividuals")
 public class BuyIndividual {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "treatment_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buy_individuals_seq")
     @GenericGenerator(
-            name = "treatments_seq",
+            name = "buy_individuals_seq",
             strategy = "com.project.livestockfarmbe.customid.CustomIdGenerator",
             parameters = {
                     @Parameter(name = CustomIdGenerator.INCREMENT_PARAM, value = "1"),
