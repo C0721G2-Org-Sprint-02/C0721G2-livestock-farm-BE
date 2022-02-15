@@ -21,7 +21,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, String> {
     Page<EmployeeServiceDTO> findEmployeeByName(@Param("search") String search, @Param("page") Pageable pageable);
 
     //    TranNN - List Employees
-    @Query(value = "select e.id, e.address, e.date_of_birth, e.email, e.gender, e.id_card, e.image, e.name, e.phone_number, e.app_user_id, e.deleted, username, r.roles_id from employees e \n" +
+    @Query(value = "select e.id, e.address, e.date_of_birth as dateOfBirth, e.email, e.gender, e.id_card as idCard, e.image, e.name, e.phone_number as phoneNumber, e.app_user_id, e.deleted, username, r.roles_id as rolesId from employees e \n" +
             "join app_users a on e.app_user_id = a.id \n" +
             "join app_users_roles r on r.app_users_id = a.id \n" +
             "where e.deleted = 0 and r.roles_id like concat('%',trim(:roles_id),'%') " +
