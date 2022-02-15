@@ -9,13 +9,13 @@ public interface EmployeeServiceDTO {
 
     public String getEmail();
 
-    public String getPhone_number();
+    public String getPhoneNumber();
 
     public String getAddress();
 
-    public LocalDate getDate_of_birth();
+    public LocalDate getDateOfBirth();
 
-    public String getId_card();
+    public String getIdCard();
 
     public Integer getGender();
 
@@ -23,5 +23,5 @@ public interface EmployeeServiceDTO {
 
     public String getImage();
 
-    public Integer getRoles_id();
+    public Integer getRolesId();
 }

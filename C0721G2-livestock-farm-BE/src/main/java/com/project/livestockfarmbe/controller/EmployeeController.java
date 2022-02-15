@@ -70,6 +70,9 @@ public class EmployeeController {
         if (dtoPage.isEmpty()){
             dtoPage = iEmployeeService.employeeList(search, role, pageable);
         }
+        if(dtoPage.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(dtoPage, HttpStatus.OK);
     }
 }
