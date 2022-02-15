@@ -14,7 +14,7 @@ public class TypeOfNews {
 
     @OneToMany(mappedBy = "typeOfNews")
     @JsonBackReference
-    private List<News> newsList ;
+    private List<News> newsList;
 
     public TypeOfNews() {
     }
