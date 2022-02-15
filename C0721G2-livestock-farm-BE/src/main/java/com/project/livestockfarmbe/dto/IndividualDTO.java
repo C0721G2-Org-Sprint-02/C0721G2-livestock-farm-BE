@@ -15,10 +15,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class IndividualDTO implements Validator {
-    @Pattern(regexp = "^IN-\\\\d{4}$")
-    @NotBlank
-    private String id;
 
+    private String id;
     @NotNull(message = "Ngày vào chuồng không được để trống")
     private LocalDate dateIn;
     @NotNull(message = "Ngày ra chuồng không được để trống")

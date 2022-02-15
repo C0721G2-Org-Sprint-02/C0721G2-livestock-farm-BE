@@ -42,20 +42,22 @@ public class IndividualController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/edit/{id}")
+    @PatchMapping("/edit")
     public ResponseEntity<Object> editOldindividual(@RequestBody @Valid IndividualDTO individualDTO,
-                                                    BindingResult bindingResult, @PathVariable("id") String id) {
+                                                    BindingResult bindingResult) {
         new IndividualDTO().validate(individualDTO, bindingResult);
-     //Id trên link và id gửi xuống đang không bằng nhau, vì lí do nào đó/
-        System.out.println(individualDTO.getId().equals(iIndividualService.findIndividualById(id)));
-        if (individualDTO.getId().equals(iIndividualService.findIndividualById(id))) {
-            if (bindingResult.hasErrors()) {
-                return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+        if (findIndividualbyId(individualDTO.getId())==null) {
+            if (individualDTO.getId().equals(iIndividualService.findIndividualById(individualDTO.getId()))) {
+                if (bindingResult.hasErrors()) {
+                    return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+                }
             }
             Object individual = iIndividualService.save(individualDTO);
             return new ResponseEntity<>(individual, HttpStatus.OK);
         }
-        String message = "id nhập và id đường dẫn không dúng";
-        return new ResponseEntity<Object>(message, HttpStatus.NOT_FOUND);
+        String message = "id not exist";
+        return new ResponseEntity<Object>(message,HttpStatus.NOT_FOUND);
     }
 }
+
+
