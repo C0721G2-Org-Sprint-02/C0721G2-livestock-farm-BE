@@ -17,4 +17,9 @@ public class TreatementServiceImpl implements ITreatementService {
     public Page<Treatement> findAllTreatementsByFilter(String doctor, String kindOfDisease, String cage, Pageable pageable) {
         return iTreatementRepository.findAllTreatementsByFilter(doctor,kindOfDisease,cage, pageable);
     }
+
+    @Override
+    public Treatement saveTreatement(Treatement treatement) {
+        return iTreatementRepository.save(treatement);
+    }
 }

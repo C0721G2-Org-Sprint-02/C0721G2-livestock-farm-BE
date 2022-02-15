@@ -7,8 +7,9 @@ import org.springframework.data.domain.Pageable;
 public interface ITreatementService {
 
 
-    // 5.6.1 KhaiPN
+    // 7.2.1 list treatement KhaiPN
     Page<Treatement> findAllTreatementsByFilter(String doctor, String kindOfDisease, String cage, Pageable pageable);
 
-
+    // 7.2.2 add treatement KhaiPN
+    Treatement saveTreatement(Treatement treatement);
 }

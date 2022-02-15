@@ -4,9 +4,11 @@ import com.project.livestockfarmbe.model.treatement.Treatement;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface ITreatementRepository extends JpaRepository< Treatement, String > {
@@ -30,4 +32,13 @@ public interface ITreatementRepository extends JpaRepository< Treatement, String
             @Param("kindOfDisease")String kindOfDisease,
             @Param("cage")String cage,
             Pageable pageable);
+
+    @Modifying
+    @Transactional
+    @Query(value = "insert into treatement (doctor, kind_of_disease, medicine, note, quantily, treatement_date, individual_id) " +
+            " values (:doctor,:kind_of_disease,:medicine,:note,:quantily,:individual_id)", nativeQuery = true)
+    Treatement saveNews(@Param("doctor") String doctor, @Param("kind_of_disease") String kind_of_disease,
+                     @Param("medicine") String medicine, @Param("note") String note, @Param("quantily") Integer quantily,
+                     @Param("individual_id") String individual_id);
+
 }
