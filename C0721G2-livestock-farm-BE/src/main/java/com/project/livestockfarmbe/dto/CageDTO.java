@@ -6,16 +6,28 @@ import com.project.livestockfarmbe.model.individual.Individual;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 public class CageDTO implements Validator {
+
+    @NotNull
+    @Pattern(regexp = "^[C][A]-[0-9]{4}$")
     private String id;
 
+    @NotNull
     private LocalDate openDate;
+    @NotNull
     private LocalDate closeDate;
+    @NotNull
+//    @Pattern(regexp = "^[0-9]+$")
     private int quantity;
-    private TypeOfCage typeOfCage;
+//    @NotNull
+    private TypeOfCageDTO typeOfCageDTO;
+//    @NotNull
     private Individual individual;
+//    @NotNull
     private Employee employeeId;
 
     public Employee getEmployeeId() {
@@ -25,6 +37,7 @@ public class CageDTO implements Validator {
     public void setEmployeeId(Employee employeeId) {
         this.employeeId = employeeId;
     }
+
 
     public CageDTO() {
     }
@@ -61,12 +74,12 @@ public class CageDTO implements Validator {
         this.quantity = quantity;
     }
 
-    public TypeOfCage getTypeOfCage() {
-        return typeOfCage;
+    public TypeOfCageDTO getTypeOfCageDTO() {
+        return typeOfCageDTO;
     }
 
-    public void setTypeOfCage(TypeOfCage typeOfCage) {
-        this.typeOfCage = typeOfCage;
+    public void setTypeOfCageDTO(TypeOfCageDTO typeOfCageDTO) {
+        this.typeOfCageDTO = typeOfCageDTO;
     }
 
     public Individual getIndividual() {

@@ -27,4 +27,15 @@ public class CageServiceImpl implements ICageService {
     public Cage saveCage(Cage cage) {
         return iCageRepository.save(cage);
     }
+
+    public Boolean checkCageExist(String id) {
+        return iCageRepository.existsById(id);
+    }
+
+
+
+
+//    public Boolean checkEmployeeExist(String id) {
+//        return iCageRepository.existsByEmployee(id);
+//    }
 }

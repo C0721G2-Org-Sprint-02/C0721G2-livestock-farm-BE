@@ -17,14 +17,6 @@ import java.util.List;
 @Where(clause = "deleted=false")
 public class Cage {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cage_seq")
-    @GenericGenerator(
-            name = "cage_seq",
-            strategy = "com.project.livestockfarmbe.customid.CustomIdGenerator",
-            parameters = {
-                    @Parameter(name = CustomIdGenerator.INCREMENT_PARAM, value = "1"),
-                    @Parameter(name = CustomIdGenerator.VALUE_PREFIX_PARAMETER, value = "CA-"),
-                    @Parameter(name = CustomIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%04d")})
     private String id;
     @ManyToOne(targetEntity = Employee.class)
     private Employee employee;
