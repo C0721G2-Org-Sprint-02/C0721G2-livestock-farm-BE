@@ -30,6 +30,7 @@ public class News {
     private Employee employee;
 
     private String title;
+    @Column(name = "content", columnDefinition = "VARCHAR(5000)")
     private String content;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime postDate;
