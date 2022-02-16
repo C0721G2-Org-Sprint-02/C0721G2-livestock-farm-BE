@@ -12,4 +12,6 @@ public interface ITreatementService {
 
     // 7.2.2 add treatement KhaiPN
     Treatement saveTreatement(Treatement treatement);
+
+
 }

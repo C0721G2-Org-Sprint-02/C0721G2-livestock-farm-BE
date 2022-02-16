@@ -12,14 +12,17 @@ public class TreatementDTO {
     private String doctor;
 
     @NotBlank(message = "Không được để trống")
-    @Size(max = 255, message = "max 255")
+    @Size(max = 40, message = "max 40")
     private String medicine;
 
     @NotBlank(message = "Không được để trống")
     @Size(max = 255, message = "max 255")
     private String kindOfDisease;
 
+    private String note;
+
     @Min(value = 1, message = "Phải là số dương(1-100)")
+    @Max(value = 100, message = "Phải là số dương(1-100)")
     @NotNull(message = "NotNull")
     private int quantily;
 
@@ -75,5 +78,13 @@ public class TreatementDTO {
 
     public void setIndividual(Individual individual) {
         this.individual = individual;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

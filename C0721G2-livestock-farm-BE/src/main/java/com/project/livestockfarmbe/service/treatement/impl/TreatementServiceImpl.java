@@ -22,4 +22,6 @@ public class TreatementServiceImpl implements ITreatementService {
     public Treatement saveTreatement(Treatement treatement) {
         return iTreatementRepository.save(treatement);
     }
+
+
 }

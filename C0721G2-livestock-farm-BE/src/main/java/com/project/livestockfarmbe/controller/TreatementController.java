@@ -3,6 +3,7 @@ package com.project.livestockfarmbe.controller;
 import com.project.livestockfarmbe.dto.TreatementDTO;
 import com.project.livestockfarmbe.model.individual.Individual;
 import com.project.livestockfarmbe.model.treatement.Treatement;
+import com.project.livestockfarmbe.service.individual.IIndividualService;
 import com.project.livestockfarmbe.service.treatement.ITreatementService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/treatement")
@@ -26,7 +29,8 @@ import java.util.List;
 public class TreatementController {
     @Autowired
     private ITreatementService iTreatementService;
-
+    @Autowired
+    private IIndividualService iIndividualService;
     // 7.2.1 Hiển thị List KhaiPN
     @GetMapping("/list")
     public ResponseEntity<Page<Treatement>> getListRealEstateNews(
@@ -46,11 +50,20 @@ public class TreatementController {
 
     // 7.2.2 add treatement KhaiPN
     @PostMapping("/post")
-    public ResponseEntity<List<FieldError>> saveRealEstateNews(@RequestBody @Valid TreatementDTO treatementDTO, BindingResult bindingResult) {
+    public ResponseEntity<Object> saveRealEstateNews(@RequestBody @Valid TreatementDTO treatementDTO, BindingResult bindingResult) {
+        Map<String,String> listErrors = new HashMap<>();
+
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         Treatement treatement = this.copyProperties(treatementDTO);
+        // Kiểm tra individual thêm vào có tồn tại hay không
+        if (!iIndividualService.existsById(treatement.getIndividual().getId())) {
+            System.out.println("IndividualNotExist");
+            listErrors.put("IndividualNotExist","cá thể này không tồn tại trong hệ thống");
+            return ResponseEntity.badRequest().body(listErrors);
+        }
+
         treatement.setTreatementDate(LocalDateTime.now());
         Treatement newTreatement = iTreatementService.saveTreatement(treatement);
         return new ResponseEntity<>(HttpStatus.OK);
