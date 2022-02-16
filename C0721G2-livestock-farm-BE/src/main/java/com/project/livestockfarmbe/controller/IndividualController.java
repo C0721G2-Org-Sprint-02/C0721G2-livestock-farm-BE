@@ -43,7 +43,7 @@ public class IndividualController {
         Individual individual = this.individualService.findIndividualById(id);
 
         if (individual == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         this.individualService.deleteIndividual(individual);
         return new ResponseEntity<>(individual, HttpStatus.OK);
