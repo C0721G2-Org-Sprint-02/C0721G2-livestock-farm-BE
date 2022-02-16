@@ -12,12 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface ITreatementRepository extends JpaRepository< Treatement, String > {
-//    @Query(value = " select * \n" +
-//            " from treatements ", nativeQuery = true, countQuery = " select count(*) from treatements ")
-//    Page<Treatement> findAllTreatementsByFilter(@Param("doctor") String doctor,
-//                                                @Param("kindOfDisease")String kindOfDisease,
-//                                                @Param("cage")String cage,
-//                                                Pageable pageable);
     @Query(value = " select * \n " +
             " from treatements tr join individuals ind on tr.individual_id = ind.id \n " +
             " where doctor like concat('%',trim(:doctor),'%')\n " +
@@ -40,5 +34,4 @@ public interface ITreatementRepository extends JpaRepository< Treatement, String
     Treatement saveNews(@Param("doctor") String doctor, @Param("kind_of_disease") String kind_of_disease,
                      @Param("medicine") String medicine, @Param("note") String note, @Param("quantily") Integer quantily,
                      @Param("individual_id") String individual_id);
-
 }

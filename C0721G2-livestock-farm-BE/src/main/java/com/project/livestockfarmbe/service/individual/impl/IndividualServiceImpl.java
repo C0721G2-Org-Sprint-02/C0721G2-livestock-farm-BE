@@ -11,6 +11,7 @@ public class IndividualServiceImpl implements IIndividualService {
     @Autowired
     private IIndividualRepository iIndividualRepository;
 
+    //check id exist - KhaiPN
     @Override
     public boolean existsById(String id) {
         return iIndividualRepository.existsById(id);
