@@ -89,31 +89,9 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         ;
     }
 
-    //Test create thất bại: doctor = blank
-    @Test
-    public void createTreatement_4() throws Exception {
-        TreatementDTO treatementDTO = new TreatementDTO();
-        treatementDTO.setDoctor("");
-        treatementDTO.setKindOfDisease("Phòng tai xanh");
-        treatementDTO.setMedicine("TX M2");
-        treatementDTO.setNote("Cho uống lại sau 8 tháng");
-        treatementDTO.setQuantily(5);
-        Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
-        this.mockMvc.perform((MockMvcRequestBuilders
-                .post("/api/treatement/post"))
-                .content(this.objectMapper.writeValueAsString(treatementDTO))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-        )
-                .andDo(print())
-                .andExpect(status().is4xxClientError())
-        ;
-    }
-
     //Test create thất bại: doctor = "123AN Nguyen" (tên bác sĩ không được có số)
     @Test
-    public void createTreatement_5() throws Exception {
+    public void createTreatement_4() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("123AN Nguyen");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
@@ -135,7 +113,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: doctor = "A" (tên bác sĩ chỉ có 1 ký tự)
     @Test
-    public void createTreatement_6() throws Exception {
+    public void createTreatement_5() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("A");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
@@ -157,7 +135,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: medicine = blank
     @Test
-    public void createTreatement_7() throws Exception {
+    public void createTreatement_6() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
@@ -179,7 +157,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: medicine = "01234567890123456789012345678901234567890123" (tên loại thuốc quá 40 ký tự)
     @Test
-    public void createTreatement_8() throws Exception {
+    public void createTreatement_7() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
@@ -201,7 +179,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: kindOfDisease = blank
     @Test
-    public void createTreatement_9() throws Exception {
+    public void createTreatement_8() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("");
@@ -228,7 +206,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
     // 01234567890123456789012345678901234567890123456789
     // 0123456789012345678901" (tên loại thuốc quá 255 ký tự)
     @Test
-    public void createTreatement_10() throws Exception {
+    public void createTreatement_9() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("01234567890123456789012345678901234567890123456789\n" +
@@ -255,7 +233,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: quantily = -1 (số lượng phải là số dương)
     @Test
-    public void createTreatement_11() throws Exception {
+    public void createTreatement_10() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
@@ -277,7 +255,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
 
     //Test create thất bại: quantily = 101 (số lượng phải là số dương < 100)
     @Test
-    public void createTreatement_12() throws Exception {
+    public void createTreatement_11() throws Exception {
         TreatementDTO treatementDTO = new TreatementDTO();
         treatementDTO.setDoctor("Phan Ngọc Khải");
         treatementDTO.setKindOfDisease("Phòng tai xanh");
