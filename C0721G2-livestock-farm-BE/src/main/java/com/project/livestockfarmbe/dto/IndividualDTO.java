@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.livestockfarmbe.model.cage.Cage;
 import com.project.livestockfarmbe.model.individual.Individual;
 import com.project.livestockfarmbe.model.treatement.Treatement;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -18,8 +19,10 @@ public class IndividualDTO implements Validator {
 
     private String id;
     @NotNull(message = "Ngày vào chuồng không được để trống")
+    @DateTimeFormat(pattern = "dd/MM/YYYY")
     private LocalDate dateIn;
     @NotNull(message = "Ngày ra chuồng không được để trống")
+    @DateTimeFormat(pattern = "dd/MM/YYYY")
     private LocalDate dateOut;
     @NotNull(message = "Cân nặng không được trống")
     @Min(value = 2)

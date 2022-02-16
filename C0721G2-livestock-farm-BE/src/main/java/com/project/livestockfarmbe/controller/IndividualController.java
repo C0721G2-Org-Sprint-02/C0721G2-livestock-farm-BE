@@ -15,7 +15,8 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/TestAPI")
+@CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/individual")
 public class IndividualController {
 
     @Autowired
@@ -39,14 +40,15 @@ public class IndividualController {
             return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
         }
         iIndividualService.save(individualDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        String message ="Dữ liệu mới đã được tạo";
+        return new ResponseEntity<>(message,HttpStatus.CREATED);
     }
 
     @PatchMapping("/edit")
     public ResponseEntity<Object> editOldindividual(@RequestBody @Valid IndividualDTO individualDTO,
                                                     BindingResult bindingResult) {
         new IndividualDTO().validate(individualDTO, bindingResult);
-        if (findIndividualbyId(individualDTO.getId())==null) {
+        if (findIndividualbyId(individualDTO.getId())!=null) {
             if (individualDTO.getId().equals(iIndividualService.findIndividualById(individualDTO.getId()))) {
                 if (bindingResult.hasErrors()) {
                     return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
