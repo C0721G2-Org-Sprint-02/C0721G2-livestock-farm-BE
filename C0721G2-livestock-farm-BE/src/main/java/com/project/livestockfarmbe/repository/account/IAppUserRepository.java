@@ -12,4 +12,6 @@ public interface IAppUserRepository extends JpaRepository<AppUser, UUID> {
     @Query(value = "SELECT * FROM app_users a join employees e on a.id = e.app_user_id where e.id =?1", nativeQuery = true)
     AppUser findByEmployee(String id);
 
+    // DoanhNV
+    boolean existsByUsername(String username);
 }

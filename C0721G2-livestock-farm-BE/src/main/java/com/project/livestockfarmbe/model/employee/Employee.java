@@ -39,7 +39,7 @@ public class Employee {
     private String idCard;
     @Column(name = "gender", columnDefinition = "TINYINT")
     private Integer gender;
-    @OneToOne(targetEntity = AppUser.class)
+    @OneToOne(targetEntity = AppUser.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private AppUser appUser;
     private String image;
     private Boolean deleted = Boolean.FALSE;

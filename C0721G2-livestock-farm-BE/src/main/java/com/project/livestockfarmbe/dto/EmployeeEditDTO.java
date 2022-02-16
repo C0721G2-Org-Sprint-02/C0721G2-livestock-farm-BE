@@ -1,29 +1,21 @@
 package com.project.livestockfarmbe.dto;
 
-import com.project.livestockfarmbe.model.account.AppUser;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.awt.*;
 import java.time.LocalDate;
 
-public class EmployeeDTO implements Validator {
+public class EmployeeEditDTO {
     private String id;
     @NotBlank(message = "Không được bỏ trống tên")
     @Pattern(regexp = "^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+)*$", message = "Không được nhập số")
     @Size(min = 6, max = 40, message = "Tên phải từ 6 đến 40 ký tự")
     private String name;
-
     @NotBlank(message = "Không được bỏ trống email")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
 //    @Size(min = 8, max = 40, message = "Email phải từ 6 đến 40 ký tự")
     private String email;
-
-    //    @Pattern(regexp = "^(09|\\(84\\)\\+9)[01]\\d{7}$")
     @NotBlank(message = "Không được bỏ trống số điện thoại")
     @Pattern(regexp = "^(0?)(3[2-9]|5[6|89]|7[0|6-9]|8[0-6|89]|9[0-4|6-9])[0-9]{7}$", message = "Phải nhập đúng định dạng số điện thoại")
     private String phoneNumber;
@@ -43,30 +35,7 @@ public class EmployeeDTO implements Validator {
 
     private Integer gender;
 
-
-    private AppUser appUser;
-
-    private Image image;
-
-    private Boolean deleted = Boolean.FALSE;
-
     private Long roleDTO;
-    //tạo ra 1 employeeEditdto
-
-    public Long getRoleDTO() {
-        return roleDTO;
-    }
-
-    public void setRoleDTO(Long roleDTO) {
-        this.roleDTO = roleDTO;
-    }
-
-    public EmployeeDTO() {
-        //comment
-
-    }
-
-
 
     public String getId() {
         return id;
@@ -132,56 +101,17 @@ public class EmployeeDTO implements Validator {
         this.gender = gender;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public Long getRoleDTO() {
+        return roleDTO;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-//        EmployeeDTO employee = (EmployeeDTO) target;
-//
-//        try {
-//            LocalDate birthDay = LocalDate.parse(employee.dateOfBirth);
-//            LocalDate today = LocalDate.now();
-//            if (Period.between(birthDay, today).getYears() < 18) {
-//                errors.rejectValue("dateOfBirth", "birthday18");
-//
-//            }
-//        } catch (Exception e) {
-//            errors.rejectValue("employeeBirthday", "birthday.empty");
-//        }
-
+    public void setRoleDTO(Long roleDTO) {
+        this.roleDTO = roleDTO;
     }
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
+        return "EmployeeEditDTO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
@@ -190,9 +120,7 @@ public class EmployeeDTO implements Validator {
                 ", dateOfBirth=" + dateOfBirth +
                 ", idCard='" + idCard + '\'' +
                 ", gender=" + gender +
-                ", appUser=" + appUser +
-                ", image=" + image +
-                ", deleted=" + deleted +
+                ", roleDTO=" + roleDTO +
                 '}';
     }
 }

@@ -38,4 +38,15 @@ public class EmployeeServiceImpl implements IEmployeeService {
         this.iEmployeeRepository.deleteById(id);
     }
 
+    // DoanhNV
+    @Override
+    public Optional<Employee> findById(String id) {
+        return iEmployeeRepository.findById(id);
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        iEmployeeRepository.save(employee);
+    }
+
 }

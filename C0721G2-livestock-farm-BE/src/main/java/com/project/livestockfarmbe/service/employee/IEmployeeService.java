@@ -18,4 +18,9 @@ public interface IEmployeeService {
     Optional<Employee> findByIdOp(String id);
 
     void deleteById(String id);
+
+    // DoanhNV
+    Optional<Employee> findById(String id);
+
+    void saveEmployee(Employee employee);
 }
