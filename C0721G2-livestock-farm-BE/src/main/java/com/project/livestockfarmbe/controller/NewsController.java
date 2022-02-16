@@ -30,13 +30,13 @@ public class NewsController {
     }
     // TaiVD 1.3 List of news
     @GetMapping("")
-    public ResponseEntity< Page< News > > showHistoryPostNews(
+    public ResponseEntity< Page< News > > showAllNews(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "") String title,
-            @RequestParam(defaultValue = "") Optional<String> typeNews) {
+            @RequestParam(defaultValue = "") String typeNews) {
         Pageable pageable = PageRequest.of(page, 7, Sort.by("post_date").descending());
-        Page< News > newsPage = newsService.findAllNews(title,typeNews.get(),pageable);
-        System.out.println(typeNews.get() + "Test");
+        Page< News > newsPage = newsService.findAllNews(title,typeNews,pageable);
+        System.out.println(typeNews + "Test");
 
         if (newsPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
