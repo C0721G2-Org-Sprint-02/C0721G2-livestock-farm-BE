@@ -38,7 +38,7 @@ public class EmployeeController {
     //    TranNN - List Employee
     @GetMapping("/list")
     public ResponseEntity<Page<EmployeeServiceDTO>> findAllEmployees(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer sort,
-                                                            @RequestParam(defaultValue = "0") Integer direction, @RequestParam(defaultValue = "", value = "search") String search, @RequestParam(defaultValue = "", value = "role") String role) {
+                                                            @RequestParam(defaultValue = "", value = "search") String search, @RequestParam(defaultValue = "", value = "role") String role) {
         Pageable pageable;
         if (role.equals("0")) {
             role = "";
