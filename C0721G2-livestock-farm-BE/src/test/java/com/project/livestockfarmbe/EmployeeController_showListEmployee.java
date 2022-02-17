@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
-class LivestockFarmBeApplicationTests {
+class EmployeeController_showListEmployee {
 
     @Autowired
     private EmployeeController employeeController;
