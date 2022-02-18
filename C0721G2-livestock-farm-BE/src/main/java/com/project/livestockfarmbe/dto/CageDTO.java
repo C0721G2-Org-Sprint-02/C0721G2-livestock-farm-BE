@@ -1,45 +1,53 @@
 package com.project.livestockfarmbe.dto;
 
-import com.project.livestockfarmbe.model.cage.TypeOfCage;
-import com.project.livestockfarmbe.model.employee.Employee;
 import com.project.livestockfarmbe.model.individual.Individual;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 public class CageDTO implements Validator {
 
-    @NotNull
+    @NotEmpty
     @Pattern(regexp = "^[C][A]-[0-9]{4}$")
     private String id;
 
-    @NotNull
+    @NotEmpty
     private LocalDate openDate;
-    @NotNull
+    @NotEmpty
     private LocalDate closeDate;
     @NotNull
 //    @Pattern(regexp = "^[0-9]+$")
     private int quantity;
-//    @NotNull
-    private TypeOfCageDTO typeOfCageDTO;
-//    @NotNull
+    @NotEmpty
+    private TypeOfCageDTO typeOfCage;
+    @NotBlank
     private Individual individual;
-//    @NotNull
-    private Employee employeeId;
 
-    public Employee getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
-    }
+    private EmployeeDTO employee;
 
 
     public CageDTO() {
+    }
+
+    public TypeOfCageDTO getTypeOfCage() {
+        return typeOfCage;
+    }
+
+    public void setTypeOfCage(TypeOfCageDTO typeOfCage) {
+        this.typeOfCage = typeOfCage;
+    }
+
+    public EmployeeDTO getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeDTO employee) {
+        this.employee = employee;
     }
 
     public String getId() {
@@ -74,13 +82,6 @@ public class CageDTO implements Validator {
         this.quantity = quantity;
     }
 
-    public TypeOfCageDTO getTypeOfCageDTO() {
-        return typeOfCageDTO;
-    }
-
-    public void setTypeOfCageDTO(TypeOfCageDTO typeOfCageDTO) {
-        this.typeOfCageDTO = typeOfCageDTO;
-    }
 
     public Individual getIndividual() {
         return individual;
