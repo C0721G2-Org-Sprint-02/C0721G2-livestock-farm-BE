@@ -1,4 +1,31 @@
 package com.project.livestockfarmbe.repository.news;
 
-public interface INewsRepository {
+import com.project.livestockfarmbe.model.news.News;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface INewsRepository extends JpaRepository<News, String> {
+    // TaiVD 1.3 List of news
+    @Query(value = " select * from news where (title like  concat('%',trim(:title),'%')) " +
+            " and deleted = false  ", nativeQuery = true, countQuery = " select count(*) " +
+            " from news where (title like  concat('%',trim(:title),'%')) and deleted = false ")
+    Page<News> findAllNews(@Param("title") String title,
+                           Pageable pageable);
+
+    // TaiVD 1.3 Show news detail
+    @Query(value = " select * from news where id =:id and deleted = false ", nativeQuery = true)
+    Optional<News> findNewsById(@Param("id") String id);
+
+    //ThinhTP 2.2.1
+
+    //ThinhTP 2.2.2
+
+    //ThinhTP 2.2.3
 }
