@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/cage")
+@RequestMapping(value = "/api/cage")
+@CrossOrigin("http://localhost:4200")
 public class CageController {
-
+  
     @Qualifier("typeOfCageServiceImpl")
     @Autowired
     ITypeOfCageService typeOfCageService;
