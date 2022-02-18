@@ -32,7 +32,7 @@ public class News {
     private String title;
     @Column(columnDefinition ="VARCHAR(2000)")
     private String content;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime postDate;
     @ManyToOne(targetEntity = TypeOfNews.class)
     private TypeOfNews typeOfNews;

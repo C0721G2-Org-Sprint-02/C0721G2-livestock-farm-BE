@@ -17,8 +17,7 @@ public class NewsRestControllerNewsListTaiVD {
     private NewsController newsController;
 
     @Test
-    public void showAllNews() {
-
+    public void showAllNews_6() {
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
                 (0, "", "");
@@ -44,7 +43,7 @@ public class NewsRestControllerNewsListTaiVD {
     }
 
     @Test
-    public void showNews_Title_Da_Nang() {
+    public void showNews_Title_Da_Nang_10() {
 
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
@@ -54,7 +53,7 @@ public class NewsRestControllerNewsListTaiVD {
     }
 
     @Test
-    public void showNews_Title_Thanh_Hoa() {
+    public void showNews_Title_Thanh_Hoa_11() {
 
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
@@ -81,8 +80,7 @@ public class NewsRestControllerNewsListTaiVD {
     }
 
     @Test
-    public void showNews_NotFound() {
-
+    public void showNews_TypeNews_NotFound_10() {
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
                 (0, "", "4");
@@ -90,7 +88,7 @@ public class NewsRestControllerNewsListTaiVD {
     }
 
     @Test
-    public void showNews_Focus() {
+    public void showNews_Focus_11() {
 
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
@@ -116,7 +114,7 @@ public class NewsRestControllerNewsListTaiVD {
     }
 
     @Test
-    public void showNewsBy_Title_TypeNews() {
+    public void showNewsBy_Title_TypeNews_11() {
 
         ResponseEntity< Page< News > > responseEntity
                 = this.newsController.showAllNews
@@ -140,5 +138,4 @@ public class NewsRestControllerNewsListTaiVD {
         Assertions.assertEquals(3,
                 responseEntity.getBody().getContent().get(0).getTypeOfNews().getId());
     }
-
 }
