@@ -60,12 +60,17 @@ public class TreatementController {
         // Kiểm tra individual thêm vào có tồn tại hay không
         if (!iIndividualService.existsById(treatement.getIndividual().getId())) {
             System.out.println("IndividualNotExist");
-            listErrors.put("IndividualNotExist","cá thể này không tồn tại trong hệ thống");
+            listErrors.put("IndividualNotExist","Cá thể này không tồn tại trong hệ thống");
             return ResponseEntity.badRequest().body(listErrors);
         }
-
+        // set individual
+        Individual individual = new Individual();
+        individual.setId(treatementDTO.getIndividual());
+        treatement.setIndividual(individual);
+        System.out.println(treatement);
         treatement.setTreatementDate(LocalDateTime.now());
         Treatement newTreatement = iTreatementService.saveTreatement(treatement);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -73,7 +78,7 @@ public class TreatementController {
         Treatement treatement = new Treatement();
         BeanUtils.copyProperties(treatementDTO, treatement);
         Individual individual = new Individual();
-        individual.setId(treatementDTO.getIndividual().getId());
+        individual.setId(treatementDTO.getIndividual());
         treatement.setIndividual(individual);
         return treatement;
     }

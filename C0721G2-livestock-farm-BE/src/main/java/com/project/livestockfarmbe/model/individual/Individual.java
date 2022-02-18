@@ -47,6 +47,9 @@ public class Individual {
     public Individual() {
 
     }
+    public Individual(String id) {
+
+    }
 
     public Individual(String id, LocalDate dateIn, LocalDate dateOut, Double weight, Integer status, Boolean deleted, Cage cage) {
         this.id = id;

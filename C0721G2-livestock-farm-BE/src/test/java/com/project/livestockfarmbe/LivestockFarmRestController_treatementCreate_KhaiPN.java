@@ -34,8 +34,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -56,8 +55,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-asds");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-asds");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -78,8 +76,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1234");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1234");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -100,8 +97,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -122,8 +118,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -144,8 +139,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -166,8 +160,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -188,8 +181,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -210,8 +202,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -242,8 +233,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(5);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -264,8 +254,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(-1);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))
@@ -286,8 +275,7 @@ public class LivestockFarmRestController_treatementCreate_KhaiPN {
         treatementDTO.setNote("Cho uống lại sau 8 tháng");
         treatementDTO.setQuantily(101);
         Individual individual = new Individual();
-        individual.setId("IN-1002");
-        treatementDTO.setIndividual(individual);
+        treatementDTO.setIndividual("IN-1002");
         this.mockMvc.perform((MockMvcRequestBuilders
                 .post("/api/treatement/post"))
                 .content(this.objectMapper.writeValueAsString(treatementDTO))

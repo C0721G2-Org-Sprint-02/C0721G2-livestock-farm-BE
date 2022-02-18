@@ -26,8 +26,7 @@ public class TreatementDTO {
     @NotNull(message = "NotNull")
     private int quantily;
 
-    @ManyToOne(targetEntity = Individual.class)
-    private Individual individual;
+    private String individual;
 
     public TreatementDTO() {
     }
@@ -72,19 +71,19 @@ public class TreatementDTO {
         this.quantily = quantily;
     }
 
-    public Individual getIndividual() {
-        return individual;
-    }
-
-    public void setIndividual(Individual individual) {
-        this.individual = individual;
-    }
-
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getIndividual() {
+        return individual;
+    }
+
+    public void setIndividual(String individual) {
+        this.individual = individual;
     }
 }
