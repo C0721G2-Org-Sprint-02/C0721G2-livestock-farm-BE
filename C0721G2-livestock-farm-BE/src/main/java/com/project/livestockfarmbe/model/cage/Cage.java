@@ -118,4 +118,5 @@ public class Cage {
     public void setIndividualList(List<Individual> individualList) {
         this.individualList = individualList;
     }
+
 }
