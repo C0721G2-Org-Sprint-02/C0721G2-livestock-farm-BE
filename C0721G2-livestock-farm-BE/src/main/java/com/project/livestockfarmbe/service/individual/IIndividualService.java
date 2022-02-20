@@ -9,4 +9,6 @@ public interface IIndividualService {
     Individual findIndividualById(String id);
 
     void deleteIndividual(Individual individual);
+
+    void save(Individual individual);
 }

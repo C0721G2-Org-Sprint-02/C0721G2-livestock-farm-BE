@@ -21,9 +21,9 @@ import java.util.List;
 @Where(clause = "deleted=false")
 public class Individual {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "individual_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "individuals_seq")
     @GenericGenerator(
-            name = "individual_seq",
+            name = "individuals_seq",
             strategy = "com.project.livestockfarmbe.customid.CustomIdGenerator",
             parameters = {
                     @Parameter(name = CustomIdGenerator.INCREMENT_PARAM, value = "1"),

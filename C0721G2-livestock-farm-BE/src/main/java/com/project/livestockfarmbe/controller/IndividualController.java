@@ -2,11 +2,13 @@ package com.project.livestockfarmbe.controller;
 
 import com.project.livestockfarmbe.model.cage.Cage;
 import com.project.livestockfarmbe.model.individual.Individual;
+import com.project.livestockfarmbe.service.cage.ICageService;
 import com.project.livestockfarmbe.service.individual.IIndividualService;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,10 @@ public class IndividualController {
 
     @Autowired
     IIndividualService individualService;
+
+    @Qualifier("cageServiceImpl")
+    @Autowired
+    ICageService cageService;
 
     @GetMapping(value = "/list")
     public ResponseEntity<Page<Individual>> showIndividualList(
@@ -79,12 +87,24 @@ public class IndividualController {
 
         for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
             Individual individual = new Individual();
-            Cage cage = new Cage();
             XSSFRow row = worksheet.getRow(i);
             String cageId = row.getCell(0).getStringCellValue();
-            individual.setCage();
-            tempStudent.setContent(row.getCell(1).getStringCellValue());
-            tempStudentList.add(tempStudent);
+            Cage cage = cageService.findByIdOp(cageId).orElse(null);
+            individual.setCage(cage);
+
+            String dateIn = row.getCell(1).getStringCellValue();
+            String dateOut = row.getCell(2).getStringCellValue();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dateInLocal = LocalDate.parse(dateIn, formatter);
+            LocalDate dateOutLocal = LocalDate.parse(dateOut, formatter);
+            individual.setDateIn(dateInLocal);
+            individual.setDateOut(dateOutLocal);
+
+            individual.setWeight(row.getCell(3).getNumericCellValue());
+            individual.setStatus((int) row.getCell(4).getNumericCellValue());
+
+            individualService.save(individual);
         }
     }
 

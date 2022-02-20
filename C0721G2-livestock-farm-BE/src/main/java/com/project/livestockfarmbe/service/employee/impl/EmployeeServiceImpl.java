@@ -1,4 +1,41 @@
 package com.project.livestockfarmbe.service.employee.impl;
 
-public class EmployeeServiceImpl {
+import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
+import com.project.livestockfarmbe.model.employee.Employee;
+import com.project.livestockfarmbe.repository.employee.IEmployeeRepository;
+import com.project.livestockfarmbe.service.employee.IEmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class EmployeeServiceImpl implements IEmployeeService {
+    @Autowired
+    IEmployeeRepository iEmployeeRepository;
+
+    //    TranNN - List Employees
+    @Override
+    public Page<EmployeeServiceDTO> employeeList(String search, String roles_id, Pageable pageable) {
+        return iEmployeeRepository.findBySearchFields(search,roles_id,pageable);
+    }
+
+    @Override
+    public Page<EmployeeServiceDTO> findByEmployeeByName(String search, Pageable pageable) {
+        return iEmployeeRepository.findEmployeeByName(search,pageable);
+    }
+
+
+    @Override
+    public Optional<Employee> findByIdOp(String id) {
+        return this.iEmployeeRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        this.iEmployeeRepository.deleteById(id);
+    }
+
 }

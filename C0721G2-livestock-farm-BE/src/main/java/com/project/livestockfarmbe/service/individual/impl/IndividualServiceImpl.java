@@ -32,4 +32,9 @@ public class IndividualServiceImpl implements IIndividualService {
     public void deleteIndividual(Individual individual) {
         iIndividualRepository.delete(individual);
     }
+
+    @Override
+    public void save(Individual individual) {
+        iIndividualRepository.save(individual);
+    }
 }
