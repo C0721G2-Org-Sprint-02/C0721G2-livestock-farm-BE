@@ -6,7 +6,6 @@ import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.account.AppUser;
 import com.project.livestockfarmbe.model.account.Role;
 import com.project.livestockfarmbe.model.employee.Employee;
-import com.project.livestockfarmbe.repository.employee.IEmployeeRepository;
 import com.project.livestockfarmbe.service.account.IRoleService;
 import com.project.livestockfarmbe.service.account.impl.AppUserServiceImpl;
 import com.project.livestockfarmbe.service.employee.IEmployeeService;
@@ -144,7 +143,7 @@ public class EmployeeController {
         //tạo account
         AppUser appUser = new AppUser();
         appUser.setUsername(employeeDTO.getEmail());
-        appUser.setPassword(bCryptPasswordEncoder.encode("abc123456"));
+        appUser.setPassword(bCryptPasswordEncoder.encode("123"));
         appUser.setEnabled(true);
         // appUser.setPassword("abc123456");
         appUser.setRoles(roles);
