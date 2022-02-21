@@ -4,6 +4,7 @@ import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.employee.Employee;
 import com.project.livestockfarmbe.repository.employee.IEmployeeRepository;
 import com.project.livestockfarmbe.service.employee.IEmployeeService;
+import com.project.livestockfarmbe.ultilities.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,11 +27,13 @@ public class EmployeeController {
     //    TranNN - Delete Employee
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Employee> delete(@PathVariable String id) {
+
         Optional<Employee> employeeOptional = this.iEmployeeService.findByIdOp(id);
         if (!employeeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         iEmployeeService.deleteById(id);
+        Log.info(id+ " is deleted");
         return new ResponseEntity<>(employeeOptional.get(), HttpStatus.OK);
     }
 
