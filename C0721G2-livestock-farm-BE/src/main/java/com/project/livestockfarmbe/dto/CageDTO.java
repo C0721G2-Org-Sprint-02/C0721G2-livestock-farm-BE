@@ -20,14 +20,14 @@ public class CageDTO implements Validator {
     private String id;
 
     // để notEmpty sẽ bị lỗi
-    //    @NotEmpty
+    @NotBlank
     private LocalDate openDate;
-//    @NotEmpty
+    @NotBlank
     private LocalDate closeDate;
     @NotNull
 //    @Pattern(regexp = "^[0-9]+$")
     private int quantity;
-//    @NotEmpty
+    //    @NotEmpty
     private TypeOfCageDTO typeOfCage;
     //    @NotEmpty
     private Individual individual;
