@@ -1,20 +1,12 @@
 package com.project.livestockfarmbe.dto;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.livestockfarmbe.model.cage.Cage;
-import com.project.livestockfarmbe.model.individual.Individual;
-import com.project.livestockfarmbe.model.treatement.Treatement;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.util.List;
 
+//thiện nhỏ//
 public class IndividualDTO implements Validator {
 
     private String id;
@@ -99,8 +91,5 @@ public class IndividualDTO implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
-
-
     }
 }
