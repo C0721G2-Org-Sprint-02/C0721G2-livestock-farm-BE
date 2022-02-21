@@ -5,6 +5,7 @@ import com.project.livestockfarmbe.model.employee.Employee;
 import com.project.livestockfarmbe.model.news.News;
 import com.project.livestockfarmbe.model.news.TypeOfNews;
 import com.project.livestockfarmbe.service.news.INewsService;
+import com.project.livestockfarmbe.service.news.ITypeOfNewsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +31,18 @@ public class NewsController {
 
     @Autowired
     private INewsService newsService;
+    @Autowired
+    private ITypeOfNewsService typeOfNewsService;
 
+
+    @GetMapping(value = "/typeofnews")
+    public ResponseEntity<List<TypeOfNews>> getTypeOfNews() {
+        List<TypeOfNews> typeOfNews = typeOfNewsService.findAll();
+        if (typeOfNews.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(typeOfNews, HttpStatus.OK);
+    }
 
     // TaiVD 1.3 Show news detail
     @GetMapping("/{id}")
