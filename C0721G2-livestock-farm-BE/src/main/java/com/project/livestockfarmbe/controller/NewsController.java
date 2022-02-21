@@ -28,6 +28,7 @@ public class NewsController {
                 -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(()
                 -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
+
     // TaiVD 1.3 List of news
     @GetMapping("")
     public ResponseEntity< Page< News > > showAllNews(
@@ -35,7 +36,7 @@ public class NewsController {
             @RequestParam(defaultValue = "") String title,
             @RequestParam(defaultValue = "") String typeNews) {
         Pageable pageable = PageRequest.of(page, 7, Sort.by("post_date").descending());
-        Page< News > newsPage = newsService.findAllNews(title,typeNews,pageable);
+        Page< News > newsPage = newsService.findAllNews(title, typeNews, pageable);
         System.out.println(typeNews + "Test");
 
         if (newsPage.isEmpty()) {
