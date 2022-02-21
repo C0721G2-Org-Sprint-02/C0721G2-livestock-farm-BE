@@ -17,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -79,33 +81,32 @@ public class IndividualController {
     }
 
     @PostMapping(value = "/upload")
-    public void readExcelFile(@RequestParam("formData") MultipartFile file) throws IOException {
-
-        List<Individual> individualList = new ArrayList<>();
+    public ResponseEntity<Object> readExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
         XSSFSheet worksheet = workbook.getSheetAt(0);
-
-        for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
+        for (int i = 0; i < worksheet.getPhysicalNumberOfRows(); i++) {
             Individual individual = new Individual();
             XSSFRow row = worksheet.getRow(i);
             String cageId = row.getCell(0).getStringCellValue();
             Cage cage = cageService.findByIdOp(cageId).orElse(null);
             individual.setCage(cage);
 
-            String dateIn = row.getCell(1).getStringCellValue();
-            String dateOut = row.getCell(2).getStringCellValue();
+            Date dateIn = row.getCell(1).getDateCellValue();
+            Date dateOut = row.getCell(2).getDateCellValue();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate dateInLocal = LocalDate.parse(dateIn, formatter);
-            LocalDate dateOutLocal = LocalDate.parse(dateOut, formatter);
+            LocalDate dateInLocal = dateIn.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate dateOutLocal = dateOut.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             individual.setDateIn(dateInLocal);
             individual.setDateOut(dateOutLocal);
+
 
             individual.setWeight(row.getCell(3).getNumericCellValue());
             individual.setStatus((int) row.getCell(4).getNumericCellValue());
 
             individualService.save(individual);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 }
