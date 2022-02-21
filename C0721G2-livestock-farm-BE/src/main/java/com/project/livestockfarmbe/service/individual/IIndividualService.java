@@ -1,5 +1,6 @@
 package com.project.livestockfarmbe.service.individual;
 
+import com.project.livestockfarmbe.dto.IndividualDTO;
 import com.project.livestockfarmbe.model.individual.Individual;
 import org.springframework.data.domain.Page;
 
@@ -11,4 +12,7 @@ public interface IIndividualService {
     void deleteIndividual(Individual individual);
 
     void save(Individual individual);
+
+    Individual save(IndividualDTO individualDTO);
+
 }

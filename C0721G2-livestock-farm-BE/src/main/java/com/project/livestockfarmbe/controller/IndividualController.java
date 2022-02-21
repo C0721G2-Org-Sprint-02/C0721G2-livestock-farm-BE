@@ -1,5 +1,6 @@
 package com.project.livestockfarmbe.controller;
 
+import com.project.livestockfarmbe.dto.IndividualDTO;
 import com.project.livestockfarmbe.model.cage.Cage;
 import com.project.livestockfarmbe.model.individual.Individual;
 import com.project.livestockfarmbe.service.cage.ICageService;
@@ -12,16 +13,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/api/individual")
@@ -107,6 +107,46 @@ public class IndividualController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
 
+
+
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Individual> findIndividualbyId(@PathVariable("id") String id) {
+        Individual individual = individualService.findIndividualById(id);
+        if (individual == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(individual, HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Object> createNewindividual(@RequestBody @Valid IndividualDTO individualDTO,
+                                                      BindingResult bindingResult) {
+        new IndividualDTO().validate(individualDTO, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+        }
+        individualService.save(individualDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/edit")
+    public ResponseEntity<Object> editOldIndividual(@RequestBody @Valid IndividualDTO individualDTO,
+                                                    BindingResult bindingResult) {
+        new IndividualDTO().validate(individualDTO, bindingResult);
+        if (findIndividualbyId(individualDTO.getId())==null) {
+            if (individualDTO.getId().equals(individualService.findIndividualById(individualDTO.getId()))) {
+                if (bindingResult.hasErrors()) {
+                    return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+                }
+            }
+            Object individual = individualService.save(individualDTO);
+            return new ResponseEntity<>(individual, HttpStatus.OK);
+        }
+        String message = "id not exist";
+        return new ResponseEntity<Object>(message,HttpStatus.NOT_FOUND);
+    }
 }
+
+
