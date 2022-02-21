@@ -29,7 +29,7 @@ public class SendMailServiceImpl implements ISendMailService {
                 "Tôi tên là : " + buyIndividual.getName()  + "\n" +  "<br>" +
                 "Số điện thoại: " + buyIndividual.getPhoneNumber() + "<br>" +
                 "Địa chỉ: " + buyIndividual.getAddress() + "<br>" +
-                "Tội cần hỗ trợ : " + buyIndividual.getContent() + "<br>" +
+                "Tôi cần hỗ trợ : " + buyIndividual.getContent() + "<br>" +
                 "<p>Thanks and Regards</p>" +
                 "<p>------------------------------------------</p>" +
                 "<p>Pig Farm Group</p>" +

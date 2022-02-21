@@ -42,7 +42,7 @@ public class CageController {
     ) {
         Page<Cage> cageListSearch = cageService.findAllCagePageSearch(pageable, search);
         if (cageListSearch.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cageListSearch, HttpStatus.OK);
     }

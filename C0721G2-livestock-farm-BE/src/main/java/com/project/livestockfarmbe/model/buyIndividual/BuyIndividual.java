@@ -1,10 +1,8 @@
 package com.project.livestockfarmbe.model.buyIndividual;
 
 import com.project.livestockfarmbe.customid.CustomIdGenerator;
-import net.bytebuddy.implementation.bind.annotation.Empty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -23,10 +21,21 @@ public class BuyIndividual {
                     @Parameter(name = CustomIdGenerator.VALUE_PREFIX_PARAMETER, value = "BI-"),
                     @Parameter(name = CustomIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%04d")})
     private String id;
+    @NotBlank(message = "Không được bỏ trống tên")
+    @Pattern(regexp = "^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+)*$", message = "Không được nhập số")
+    @Size(min = 6, max = 40, message = "Tên phải từ 6 đến 40 ký tự")
     private String name;
+    @NotBlank(message = "Không được bỏ trống email")
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$", message = "Email không đúng định dạng")
     private String email;
+    @NotBlank(message = "Không được bỏ trống số điện thoại")
+    @Pattern(regexp = "^(0?)(3[2-9]|5[6|89]|7[0|6-9]|8[0-6|89]|9[0-4|6-9])[0-9]{7}$", message = "Phải nhập đúng định dạng số điện thoại")
     private String phoneNumber;
+    @NotBlank(message = "Không được bỏ trống địa chỉ")
+    @Size(min = 6, max = 255, message = "Địa chỉ phải từ 6 đến 255 ký tự")
     private String address;
+    @NotEmpty
+    @NotBlank
     private String content;
 
     public BuyIndividual(String id, String name, String email, String phoneNumber, String address, String content) {
