@@ -60,7 +60,6 @@ public class IndividualController {
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Individual> deleteIndividual(@PathVariable String id) {
         Individual individual = this.individualService.findIndividualById(id);
-
         if (individual == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -75,9 +74,7 @@ public class IndividualController {
         if (individual == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(individual, HttpStatus.OK);
-
     }
 
     @PostMapping(value = "/upload")
@@ -88,7 +85,7 @@ public class IndividualController {
             Individual individual = new Individual();
             XSSFRow row = worksheet.getRow(i);
             String cageId = row.getCell(0).getStringCellValue();
-            Cage cage = cageService.findByIdOp(cageId).orElse(null);
+            Cage cage = cageService.findCageById(cageId).orElse(null);
             individual.setCage(cage);
 
             Date dateIn = row.getCell(1).getDateCellValue();
@@ -106,9 +103,6 @@ public class IndividualController {
             individualService.save(individual);
         }
         return new ResponseEntity<>(HttpStatus.OK);
-
-
-
     }
 
     @GetMapping("/id/{id}")

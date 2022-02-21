@@ -9,9 +9,8 @@ import java.util.Properties;
 
 @Configuration
 public class MailConfig {
-    public static final String MY_EMAIL = "plthienbkdn@gmail.com";
-
-    public static final String APP_PASS = "uermylnoujwkdsdk";
+    public static final String MY_EMAIL = "kukuku12113@gmail.com";
+    public static final String APP_PASS = "leanaacgkdqhwcib";
 
     @Bean
     public JavaMailSender getJavaMailSender() {
