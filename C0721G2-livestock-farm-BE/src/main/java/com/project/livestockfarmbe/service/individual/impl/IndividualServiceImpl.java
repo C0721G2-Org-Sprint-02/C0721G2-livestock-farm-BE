@@ -43,7 +43,13 @@ public class IndividualServiceImpl implements IIndividualService {
     @Override
     public Individual save(IndividualDTO individualDTO) {
         Individual individual = new Individual();
-        BeanUtils.copyProperties(individualDTO,individual);
+        BeanUtils.copyProperties(individualDTO, individual);
         return iIndividualRepository.save(individual);
+    }
+
+    //check id exist - KhaiPN
+    @Override
+    public boolean existsById(String id) {
+        return iIndividualRepository.existsById(id);
     }
 }
