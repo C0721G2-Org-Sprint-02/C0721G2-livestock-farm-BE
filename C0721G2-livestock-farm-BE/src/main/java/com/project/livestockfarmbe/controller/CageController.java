@@ -65,7 +65,7 @@ public class CageController {
 
         Map<String, String> listErrors = new HashMap<>();
         //kiểm tra employee
-        if (!iEmployeeService.checkEmployee(cage.getEmployee().getId())) {
+        if (!iEmployeeService.checkEmployee(cageDTO.getEmployee().getId())) {
             System.out.println("tên employee không có ");
             listErrors.put("employeeError", "Tên nhân viên không tồn tại.");
         }
@@ -148,12 +148,6 @@ public class CageController {
             listErrors.put("employeeError", "Tên nhân viên không tồn tại.");
         }
 
-
-        //kiểm trả tên chuồng nuôi
-        if (cageService.checkCageExist(cageDTO.getId())) {
-            System.out.println("Tên chuồng nuôi đã tồn tại");
-            listErrors.put("cageError", "Mã chuồng nuôi đã tồn tại.");
-        }
 
         if (!listErrors.isEmpty()) {
             System.out.println(listErrors.keySet());

@@ -12,6 +12,10 @@ public class TypeOfCageDTO {
         this.name = name;
     }
 
+    public TypeOfCageDTO(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

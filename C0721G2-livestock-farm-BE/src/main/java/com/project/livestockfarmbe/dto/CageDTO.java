@@ -9,6 +9,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class CageDTO implements Validator {
 
@@ -16,16 +19,17 @@ public class CageDTO implements Validator {
     @Pattern(regexp = "^[C][A]-[0-9]{4}$")
     private String id;
 
-    @NotEmpty
+    // để notEmpty sẽ bị lỗi
+    //    @NotEmpty
     private LocalDate openDate;
-    @NotEmpty
+//    @NotEmpty
     private LocalDate closeDate;
     @NotNull
 //    @Pattern(regexp = "^[0-9]+$")
     private int quantity;
-    @NotEmpty
+//    @NotEmpty
     private TypeOfCageDTO typeOfCage;
-    @NotBlank
+    //    @NotEmpty
     private Individual individual;
 
     private EmployeeDTO employee;
@@ -98,6 +102,10 @@ public class CageDTO implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+
+    }
+
+    public static void main(String[] args) {
 
     }
 }
