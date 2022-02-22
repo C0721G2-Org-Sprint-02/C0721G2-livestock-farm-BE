@@ -1,5 +1,6 @@
 package com.project.livestockfarmbe.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -9,9 +10,8 @@ import java.util.Properties;
 
 @Configuration
 public class MailConfig {
-    public static final String MY_EMAIL = "plthienbkdn@gmail.com";
-
-    public static final String APP_PASS = "uermylnoujwkdsdk";
+    public static final String MY_EMAIL = "kukuku12113@gmail.com";
+    public static final String APP_PASS = "leanaacgkdqhwcib";
 
     @Bean
     public JavaMailSender getJavaMailSender() {

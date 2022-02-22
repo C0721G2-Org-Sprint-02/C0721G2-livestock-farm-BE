@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
 @RequestMapping(value = "/api/cage")
+@CrossOrigin("http://localhost:4200")
 public class CageController {
-
+  
     @Qualifier("typeOfCageServiceImpl")
     @Autowired
     ITypeOfCageService typeOfCageService;
@@ -42,7 +42,7 @@ public class CageController {
     ) {
         Page<Cage> cageListSearch = cageService.findAllCagePageSearch(pageable, search);
         if (cageListSearch.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cageListSearch, HttpStatus.OK);
     }
