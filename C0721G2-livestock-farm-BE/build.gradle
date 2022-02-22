@@ -29,7 +29,15 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-mail:2.2.0.RELEASE'
     implementation 'com.google.api-client:google-api-client:1.30.9'
-
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto
+    implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+//    implementation 'javax.mail:mail:1.4.7'
+    implementation 'org.springframework.boot:spring-boot-starter-social-facebook:1.5.22.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.6.1'
 }
 
 

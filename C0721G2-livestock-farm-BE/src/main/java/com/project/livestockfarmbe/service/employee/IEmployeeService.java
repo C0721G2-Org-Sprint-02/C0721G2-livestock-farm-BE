@@ -17,4 +17,6 @@ public interface IEmployeeService {
     Optional<Employee> findByIdOp(String id);
 
     void deleteById(String id);
+
+    Employee getEmployeeByUsername(String username);
 }

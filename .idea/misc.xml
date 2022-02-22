@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+<<<<<<< HEAD
+=======
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/C0721G2-livestock-farm-BE" />
+  </component>
+>>>>>>> 4de749d3d01661a2c2653d35b9d39b9782a4c6fc
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>

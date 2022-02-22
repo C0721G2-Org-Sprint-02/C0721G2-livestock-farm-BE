@@ -41,4 +41,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, String> {
                     "and (match (`name`, address, email, phone_number, id_card) against (:search) or username like concat('%',trim(:search),'%'))")
     Page<EmployeeServiceDTO> findBySearchFields(@Param("search") String search, @Param("roles_id") String roles_id, @Param("page") Pageable pageable);
 
+
+    @Query(value = "SELECT * from employees e join app_users a on e.app_user_id = a.id where a.username =?1", nativeQuery = true)
+    Employee findEmployeeByAppUser(String username);
 }
