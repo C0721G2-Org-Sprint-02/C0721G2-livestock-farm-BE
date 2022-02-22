@@ -11,14 +11,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity(name = "treatments")
-@SQLDelete(sql = "UPDATE treatments SET deleted = true WHERE id=?")
+@Entity(name = "treatements")
+@SQLDelete(sql = "UPDATE treatements SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 public class Treatement {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "treatment_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "treatements_seq")
     @GenericGenerator(
-            name = "treatments_seq",
+            name = "treatements_seq",
             strategy = "com.project.livestockfarmbe.customid.CustomIdGenerator",
             parameters = {
                     @Parameter(name = CustomIdGenerator.INCREMENT_PARAM, value = "1"),

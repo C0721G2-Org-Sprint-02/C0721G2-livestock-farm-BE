@@ -38,4 +38,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
         this.iEmployeeRepository.deleteById(id);
     }
 
+    @Override
+    public Employee getEmployeeByUsername(String username) {
+        return this.iEmployeeRepository.findEmployeeByAppUser(username);
+    }
 }

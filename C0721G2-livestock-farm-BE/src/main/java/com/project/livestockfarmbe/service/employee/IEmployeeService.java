@@ -4,7 +4,6 @@ import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -18,4 +17,6 @@ public interface IEmployeeService {
     Optional<Employee> findByIdOp(String id);
 
     void deleteById(String id);
+
+    Employee getEmployeeByUsername(String username);
 }
