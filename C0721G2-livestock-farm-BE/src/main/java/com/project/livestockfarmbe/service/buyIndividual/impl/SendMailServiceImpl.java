@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
 
 @Service
 public class SendMailServiceImpl implements ISendMailService {
@@ -26,10 +24,10 @@ public class SendMailServiceImpl implements ISendMailService {
         helper.setTo("hungnn88dn@gmail.com");
         helper.setSubject("Liên hệ mua cá thể");
         mailContent = "<p>Chào bạn </p> \n" +
-                "Tôi tên là : " + buyIndividual.getName()  + "\n" +
-                "Số điện thoại: " + buyIndividual.getPhoneNumber() +
-                "Địa chỉ: " + buyIndividual.getAddress() +
-                "Tội cần hỗ trợ : " + buyIndividual.getContent() +
+                "Tôi tên là : " + buyIndividual.getName()  + "\n" +  "<br>" +
+                "Số điện thoại: " + buyIndividual.getPhoneNumber() + "<br>" +
+                "Địa chỉ: " + buyIndividual.getAddress() + "<br>" +
+                "Tôi cần hỗ trợ : " + buyIndividual.getContent() + "<br>" +
                 "<p>Thanks and Regards</p>" +
                 "<p>------------------------------------------</p>" +
                 "<p>Pig Farm Group</p>" +

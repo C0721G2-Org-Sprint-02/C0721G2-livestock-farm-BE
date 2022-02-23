@@ -24,14 +24,14 @@ public class CustomIdGenerator extends SequenceStyleGenerator {
 
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
-        return valuePrefix +String.format(numberFormat, super.generate(session,object));
+        return valuePrefix + String.format(numberFormat, super.generate(session, object));
     }
 
     @Override
     public void configure(Type type, Properties params, ServiceRegistry serviceRegistry) throws MappingException {
-        super.configure(LongType.INSTANCE,params,serviceRegistry);
-        valuePrefix = ConfigurationHelper.getString(VALUE_PREFIX_PARAMETER,params,VALUE_PREFIX_DEFAULT);
-        numberFormat = ConfigurationHelper.getString(NUMBER_FORMAT_PARAMETER,params,NUMBER_FORMAT_DEFAULT);
+        super.configure(LongType.INSTANCE, params, serviceRegistry);
+        valuePrefix = ConfigurationHelper.getString(VALUE_PREFIX_PARAMETER, params, VALUE_PREFIX_DEFAULT);
+        numberFormat = ConfigurationHelper.getString(NUMBER_FORMAT_PARAMETER, params, NUMBER_FORMAT_DEFAULT);
 
     }
 }

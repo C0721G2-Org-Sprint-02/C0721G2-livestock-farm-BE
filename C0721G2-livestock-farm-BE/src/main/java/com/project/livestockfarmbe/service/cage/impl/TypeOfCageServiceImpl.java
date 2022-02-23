@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TypeOfCageServiceImpl implements ITypeOfCageService {
+public class TypeOfCageServiceImpl  implements ITypeOfCageService {
     @Autowired
     ITypeOfCageRepository typeOfCageRepository;
+
     @Override
     public List<TypeOfCage> findAllTypeOfCage() {
-        return this.typeOfCageRepository.findAll();
+        return typeOfCageRepository.findAll();
     }
 }

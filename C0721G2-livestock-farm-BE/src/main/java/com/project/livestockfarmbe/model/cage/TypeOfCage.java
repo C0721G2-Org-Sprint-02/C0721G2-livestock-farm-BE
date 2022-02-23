@@ -14,7 +14,7 @@ public class TypeOfCage {
 
     @OneToMany(mappedBy = "typeOfCage")
     @JsonBackReference
-    private List<Cage> cageList ;
+    private List<Cage> cageList;
 
     public TypeOfCage() {
     }

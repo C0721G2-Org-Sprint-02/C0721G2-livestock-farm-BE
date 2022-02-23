@@ -8,10 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ICageRepository extends JpaRepository<Cage, String> {
 
-    @Query(value= "select c.id, e.id as employee_id, e.`name`, c.open_date, c.close_date, t.`name`,c.quantily , " +
+    @Query(value = "select * \n" +
+            " from cages where id = :id ", nativeQuery = true)
+    Optional<Cage> findById(@Param("id") String id);
+
+
+    @Query(value= "select c.id, e.id as employee_id, e.`name`, c.open_date, c.close_date, t.`name`,c.quantity , " +
             "c.deleted , c.type_of_cage_id as type_of_cage_id from cages c \n" +
             "join employees e on c.employee_id = e.id \n" +
             "join type_of_cage t on c.type_of_cage_id = t.id \n" +
@@ -24,8 +31,10 @@ public interface ICageRepository extends JpaRepository<Cage, String> {
                     " or t.`name` like concat(\"%\", :search, \"%\") ;")
     Page<Cage> searchCageByEmployeeNameOrDayOponeOrTypeOfCage(Pageable pageable, @Param("search") String  search);
 
-    @Query(value= "select c.id, c.employee_id, e.id, e.`name`, c.open_date,c.close_date, c.quantily, c.type_of_cage_id," +
+
+    @Query(value= "select c.id, c.employee_id, e.id, e.`name`, c.open_date,c.close_date, c.quantity, c.type_of_cage_id," +
             " c.deleted from cages c join employees e on c.employee_id = e.id", nativeQuery = true,
-    countQuery = "select count(*) from cages c join employees e on c.employee_id = e.id")
+            countQuery = "select count(*) from cages c join employees e on c.employee_id = e.id")
     Page<Cage> listCages(Pageable pageable);
+
 }

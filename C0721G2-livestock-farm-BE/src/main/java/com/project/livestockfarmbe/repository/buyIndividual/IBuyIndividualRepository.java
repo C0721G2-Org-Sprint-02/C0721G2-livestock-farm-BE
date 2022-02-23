@@ -1,6 +1,5 @@
 package com.project.livestockfarmbe.repository.buyIndividual;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.project.livestockfarmbe.model.buyIndividual.BuyIndividual;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

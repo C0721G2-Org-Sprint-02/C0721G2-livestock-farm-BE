@@ -30,9 +30,9 @@ public class News {
     private Employee employee;
 
     private String title;
-    @Column(name = "content", columnDefinition = "VARCHAR(5000)")
+    @Column(columnDefinition ="VARCHAR(2000)")
     private String content;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime postDate;
     @ManyToOne(targetEntity = TypeOfNews.class)
     private TypeOfNews typeOfNews;

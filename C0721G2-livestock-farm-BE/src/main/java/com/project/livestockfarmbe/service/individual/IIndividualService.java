@@ -15,4 +15,6 @@ public interface IIndividualService {
 
     Individual save(IndividualDTO individualDTO);
 
+    //check id exist - KhaiPN
+    boolean existsById(String id);
 }

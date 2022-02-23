@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id "org.sonarqube" version "3.0"
 }
 
 group = 'com.project'
@@ -24,17 +23,25 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-mail:2.2.0.RELEASE'
     implementation 'com.google.api-client:google-api-client:1.30.9'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.0'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.2.0.RELEASE'
+    implementation 'com.google.api-client:google-api-client:1.30.9'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto
+    implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+//    implementation 'javax.mail:mail:1.4.7'
+    implementation 'org.springframework.boot:spring-boot-starter-social-facebook:1.5.22.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.6.1'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()
 }
-sonarqube {
-    properties {
-        property 'sonar.host.url', 'http://3.144.5.25:9000/'
-        property 'sonar.login',
-                'f4570cffe1dd5bf39ecbeed0ef04eef921709b5a'
-        property 'sonar.projectKey', 'C0721G2_ReviewCode_HienPLT'
-        property 'sonar.projectName', 'C0721G2_ReviewCode_HienPLT'
-    }
-}
+

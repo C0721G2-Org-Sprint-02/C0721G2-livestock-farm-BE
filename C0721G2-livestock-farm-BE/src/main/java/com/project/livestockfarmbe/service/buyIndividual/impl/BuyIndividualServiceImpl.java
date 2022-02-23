@@ -13,8 +13,6 @@ public class BuyIndividualServiceImpl implements IBuyIndividualService {
 
     @Override
     public void saveBuyIndividual(BuyIndividual buyIndividual) {
-//        this.iBuyIndividualRepository.saveBuyIndividual(buyIndividual.getName(), buyIndividual.getPhoneNumber(),
-//                buyIndividual.getEmail(),buyIndividual.getAddress(),buyIndividual.getContent());
         this.iBuyIndividualRepository.save(buyIndividual);
     }
 }
