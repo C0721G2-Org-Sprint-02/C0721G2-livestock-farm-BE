@@ -20,6 +20,7 @@ public class EmployeeDTO implements Validator {
 
     @NotBlank(message = "Không được bỏ trống email")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
+//    @Pattern(regexp = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")
 //    @Size(min = 8, max = 40, message = "Email phải từ 6 đến 40 ký tự")
     private String email;
 
@@ -44,9 +45,9 @@ public class EmployeeDTO implements Validator {
     private Integer gender;
 
 
-    private AppUser appUser;
+    private String appUser;
 
-    private Image image;
+    private String image;
 
     private Boolean deleted = Boolean.FALSE;
 
@@ -132,19 +133,19 @@ public class EmployeeDTO implements Validator {
         this.gender = gender;
     }
 
-    public AppUser getAppUser() {
+    public String getAppUser() {
         return appUser;
     }
 
-    public void setAppUser(AppUser appUser) {
+    public void setAppUser(String appUser) {
         this.appUser = appUser;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

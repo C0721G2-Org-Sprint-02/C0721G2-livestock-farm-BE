@@ -26,7 +26,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/employee")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(value = "http://localhost:4200", allowedHeaders = "*")
 public class EmployeeController {
 
     @Autowired
@@ -134,6 +134,7 @@ public class EmployeeController {
         BeanUtils.copyProperties(employeeDTO, employee);
 
 
+
         // Set role
         Role role = roleService.getRoleById(employeeDTO.getRoleDTO());
         Set<Role> roles = new HashSet<>();
@@ -164,12 +165,12 @@ public class EmployeeController {
 
         }
         //kiểm tra email có bị trùng lặp hay không
-        Map<String, String> listErrors = new HashMap<>();
-        if (appUserService.existsByUserName(employeeDTO.getEmail())) {
-
-            listErrors.put("errorEmail", "Email đã có người sử dụng");
-            return ResponseEntity.badRequest().body(listErrors);
-        }
+        //Map<String, String> listErrors = new HashMap<>();
+//        if (appUserService.existsByUserName(employeeDTO.getEmail())) {
+//
+//            listErrors.put("errorEmail", "Email đã có người sử dụng");
+//            return ResponseEntity.badRequest().body(listErrors);
+//        }
 
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);

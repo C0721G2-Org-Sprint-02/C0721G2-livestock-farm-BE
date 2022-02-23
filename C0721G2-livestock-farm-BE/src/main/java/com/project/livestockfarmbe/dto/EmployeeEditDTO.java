@@ -13,7 +13,9 @@ public class EmployeeEditDTO {
     @Size(min = 6, max = 40, message = "Tên phải từ 6 đến 40 ký tự")
     private String name;
     @NotBlank(message = "Không được bỏ trống email")
-    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
+//    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
+    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+//    @Pattern(regexp = "^[a-z][a-z0-9_\.]{5,32}+@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$")
 //    @Size(min = 8, max = 40, message = "Email phải từ 6 đến 40 ký tự")
     private String email;
     @NotBlank(message = "Không được bỏ trống số điện thoại")
@@ -36,6 +38,16 @@ public class EmployeeEditDTO {
     private Integer gender;
 
     private Long roleDTO;
+
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getId() {
         return id;
@@ -121,6 +133,7 @@ public class EmployeeEditDTO {
                 ", idCard='" + idCard + '\'' +
                 ", gender=" + gender +
                 ", roleDTO=" + roleDTO +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
