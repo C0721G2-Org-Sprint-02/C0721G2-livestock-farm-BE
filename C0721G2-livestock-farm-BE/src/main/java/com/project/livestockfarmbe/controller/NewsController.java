@@ -35,7 +35,7 @@ public class NewsController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "") String title,
             @RequestParam(defaultValue = "") String typeNews) {
-        Pageable pageable = PageRequest.of(page, 7, Sort.by("post_date").descending());
+        Pageable pageable = PageRequest.of(page, 12, Sort.by("post_date").descending());
         Page< News > newsPage = newsService.findAllNews(title, typeNews, pageable);
         System.out.println(typeNews + "Test");
 
