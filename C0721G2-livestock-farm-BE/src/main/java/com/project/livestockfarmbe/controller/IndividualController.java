@@ -42,8 +42,7 @@ public class IndividualController {
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
         }
         iIndividualService.save(individualDTO);
-        String message = "Dữ liệu mới đã được tạo";
-        return new ResponseEntity<>(message, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //thiện nhỏ//
