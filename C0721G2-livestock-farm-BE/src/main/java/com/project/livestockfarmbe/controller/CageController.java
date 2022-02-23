@@ -38,10 +38,10 @@ public class CageController {
     @GetMapping(value = "/list")
     public ResponseEntity<Page<Cage>> showCages(@PageableDefault(value = 5) Pageable pageable) {
         Page<Cage> cagesList = cageService.findAllCagePage(pageable);
-        if(cagesList.isEmpty()){
+        if (cagesList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(cagesList,HttpStatus.OK);
+        return new ResponseEntity<>(cagesList, HttpStatus.OK);
     }
 
     @GetMapping(value = "/search")
@@ -50,7 +50,7 @@ public class CageController {
     ) {
         Page<Cage> cageListSearch = cageService.findAllCagePageSearch(pageable, search);
         if (cageListSearch.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cageListSearch, HttpStatus.OK);
     }
@@ -84,13 +84,13 @@ public class CageController {
         Cage cage = new Cage();
 
         Map<String, String> listErrors = new HashMap<>();
+        BeanUtils.copyProperties(cageDTO, cage);
+
         //kiểm tra employee
         if (!cageService.checkEmployee(cageDTO.getEmployee().getId())) {
             System.out.println("tên employee không có ");
             listErrors.put("employeeError", "Tên nhân viên không tồn tại.");
         }
-
-
         //kiểm trả tên chuồng nuôi
         if (cageService.checkCageExist(cageDTO.getId())) {
             System.out.println("Tên chuồng nuôi đã tồn tại");
@@ -123,7 +123,7 @@ public class CageController {
     public ResponseEntity<Object> findCageById(@PathVariable String id) {
         Optional<Cage> cage = cageService.findCageById(id);
         if (!cage.isPresent()) {
-            System.out.println("Lỗi ");
+            System.out.println("Lỗi");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(cage.get(), HttpStatus.OK);
@@ -147,6 +147,8 @@ public class CageController {
         }
         Cage cage = new Cage();
         Map<String, String> listErrors = new HashMap<>();
+        BeanUtils.copyProperties(cageDTO, cage);
+
 
 
         // set loại chuồng
@@ -175,7 +177,6 @@ public class CageController {
         }
 
 
-        BeanUtils.copyProperties(cageDTO, cage);
         System.out.println(cage.toString());
         cageService.saveCage(cage);
         return new ResponseEntity<>(cage, HttpStatus.OK);

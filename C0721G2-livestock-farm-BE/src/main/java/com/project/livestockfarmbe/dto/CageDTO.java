@@ -4,10 +4,7 @@ import com.project.livestockfarmbe.model.individual.Individual;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,12 +17,11 @@ public class CageDTO implements Validator {
     private String id;
 
     // để notEmpty sẽ bị lỗi
-    @NotBlank
     private LocalDate openDate;
-    @NotBlank
     private LocalDate closeDate;
+    //    @Pattern(regexp = "^[0-9]+$")
     @NotNull
-//    @Pattern(regexp = "^[0-9]+$")
+    @Max(value = 100, message = "số lượng tối đa là 100")
     private int quantity;
     //    @NotEmpty
     private TypeOfCageDTO typeOfCage;
