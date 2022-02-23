@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity(name = "buyIndividuals")
-public class BuyIndividual {
+public  class BuyIndividual {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buy_individuals_seq")
     @GenericGenerator(
