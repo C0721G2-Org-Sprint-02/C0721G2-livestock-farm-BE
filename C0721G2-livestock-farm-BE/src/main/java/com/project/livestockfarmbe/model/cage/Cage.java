@@ -11,6 +11,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity(name = "cages")
@@ -115,5 +116,6 @@ public class Cage {
     public void setIndividualList(List<Individual> individualList) {
         this.individualList = individualList;
     }
+    
 
 }
