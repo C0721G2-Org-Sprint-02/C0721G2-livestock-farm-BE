@@ -19,4 +19,11 @@ public interface IEmployeeService {
     void deleteById(String id);
 
     Employee getEmployeeByUsername(String username);
+
+    // DoanhNV
+    Optional<Employee> findById(String id);
+
+    void saveEmployee(Employee employee);
+
+    void saveEmployeeDTO(Employee employee);
 }

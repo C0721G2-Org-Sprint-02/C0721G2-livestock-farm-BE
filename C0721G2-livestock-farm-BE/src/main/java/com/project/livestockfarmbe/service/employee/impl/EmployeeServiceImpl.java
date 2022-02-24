@@ -42,4 +42,20 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public Employee getEmployeeByUsername(String username) {
         return this.iEmployeeRepository.findEmployeeByAppUser(username);
     }
+
+    // DoanhNV
+    @Override
+    public Optional<Employee> findById(String id) {
+        return iEmployeeRepository.findById(id);
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        iEmployeeRepository.save(employee);
+    }
+
+    @Override
+    public void saveEmployeeDTO(Employee employee) {
+        iEmployeeRepository.save(employee);
+    }
 }
