@@ -54,8 +54,4 @@ public class EmployeeServiceImpl implements IEmployeeService {
         iEmployeeRepository.save(employee);
     }
 
-    @Override
-    public void saveEmployeeDTO(Employee employee) {
-        iEmployeeRepository.save(employee);
-    }
 }
