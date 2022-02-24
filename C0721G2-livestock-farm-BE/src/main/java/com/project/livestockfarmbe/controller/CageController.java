@@ -50,7 +50,7 @@ public class CageController {
     ) {
         Page<Cage> cageListSearch = cageService.findAllCagePageSearch(pageable, search);
         if (cageListSearch.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cageListSearch, HttpStatus.OK);
     }
@@ -84,6 +84,7 @@ public class CageController {
         }
         Cage cage = new Cage();
 
+
         Map<String, String> listErrors = new HashMap<>();
         //kiểm tra employee
         if (!cageService.checkEmployee(cageDTO.getEmployee().getId())) {
@@ -109,6 +110,10 @@ public class CageController {
         System.out.println(cageDTO.getEmployee().getId());
         employee.setId(cageDTO.getEmployee().getId());
         cage.setEmployee(employee);
+
+
+
+
 
         if (!listErrors.isEmpty()) {
             System.out.println(listErrors.keySet());
