@@ -1,31 +1,23 @@
 package com.project.livestockfarmbe.dto;
 
-
-import com.project.livestockfarmbe.model.account.AppUser;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.awt.*;
 import java.time.LocalDate;
 
-public class
-EmployeeDTO implements Validator {
+public class EmployeeEditDTO {
     private String id;
     @NotBlank(message = "Không được bỏ trống tên")
     @Pattern(regexp = "^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]+)*$", message = "Không được nhập số")
     @Size(min = 6, max = 40, message = "Tên phải từ 6 đến 40 ký tự")
     private String name;
-
     @NotBlank(message = "Không được bỏ trống email")
-    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
+//    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
+    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+//    @Pattern(regexp = "^[a-z][a-z0-9_\.]{5,32}+@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$")
 //    @Size(min = 8, max = 40, message = "Email phải từ 6 đến 40 ký tự")
     private String email;
-
-    //    @Pattern(regexp = "^(09|\\(84\\)\\+9)[01]\\d{7}$")
     @NotBlank(message = "Không được bỏ trống số điện thoại")
     @Pattern(regexp = "^(0?)(3[2-9]|5[6|89]|7[0|6-9]|8[0-6|89]|9[0-4|6-9])[0-9]{7}$", message = "Phải nhập đúng định dạng số điện thoại")
     private String phoneNumber;
@@ -34,7 +26,7 @@ EmployeeDTO implements Validator {
     @Size(min = 6, max = 255, message = "Địa chỉ phải từ 6 đến 255 ký tự")
     private String address;
 
-//    @NotNull(message = "Không được để trống ngày sinh")
+    @NotNull(message = "Không được để trống ngày sinh")
 //    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Không đúng định dạng ngày sinh")
     private LocalDate dateOfBirth;
 
@@ -45,27 +37,9 @@ EmployeeDTO implements Validator {
 
     private Integer gender;
 
-    private AppUser appUser;
+    private Long roleDTO;
 
     private String image;
-
-    private Boolean deleted = Boolean.FALSE;
-
-    private Long roleDTO;
-    //tạo ra 1 employeeEditdto
-
-    public Long getRoleDTO() {
-        return roleDTO;
-    }
-
-    public void setRoleDTO(Long roleDTO) {
-        this.roleDTO = roleDTO;
-    }
-
-    public EmployeeDTO() {
-        //comment
-
-    }
 
     public String getImage() {
         return image;
@@ -73,10 +47,6 @@ EmployeeDTO implements Validator {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public EmployeeDTO(String id) {
-        this.id = id;
     }
 
     public String getId() {
@@ -143,53 +113,17 @@ EmployeeDTO implements Validator {
         this.gender = gender;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public Long getRoleDTO() {
+        return roleDTO;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
-    }
-
-
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
-
-//        EmployeeDTO employee = (EmployeeDTO) target;
-//
-//        try {
-//            LocalDate birthDay = LocalDate.parse(employee.dateOfBirth);
-//            LocalDate today = LocalDate.now();
-//            if (Period.between(birthDay, today).getYears() < 18) {
-//                errors.rejectValue("dateOfBirth", "birthday18");
-//
-//            }
-//        } catch (Exception e) {
-//            errors.rejectValue("employeeBirthday", "birthday.empty");
-//        }
-
-
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
+    public void setRoleDTO(Long roleDTO) {
+        this.roleDTO = roleDTO;
     }
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
+        return "EmployeeEditDTO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
@@ -198,10 +132,8 @@ EmployeeDTO implements Validator {
                 ", dateOfBirth=" + dateOfBirth +
                 ", idCard='" + idCard + '\'' +
                 ", gender=" + gender +
-                ", appUser=" + appUser +
-                ", image='" + image + '\'' +
-                ", deleted=" + deleted +
                 ", roleDTO=" + roleDTO +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
