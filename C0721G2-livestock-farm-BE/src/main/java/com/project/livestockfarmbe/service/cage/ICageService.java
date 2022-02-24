@@ -25,4 +25,5 @@ public interface ICageService {
     Page<Cage> findAllCagePage(Pageable pageable);
     Page<Cage> findAllCagePageSearch(Pageable pageable, String search);
 
+    List<Cage> getCages();
 }

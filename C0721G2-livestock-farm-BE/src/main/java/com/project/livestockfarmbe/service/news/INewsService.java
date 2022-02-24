@@ -13,4 +13,10 @@ public interface INewsService {
 
     // TaiVD 1.3 List of news
     Page< News > findAllNews(@Param("title") String title, @Param("typeNews") String typeNews, Pageable pageable);
+
+    // Đây là phần của ThinhTP
+
+    void deleteNewsById(String id);
+
+    void saveNews(News news);
 }

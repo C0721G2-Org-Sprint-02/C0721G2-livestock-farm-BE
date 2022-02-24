@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -119,7 +120,7 @@ public class IndividualController {
                                                       BindingResult bindingResult) {
         new IndividualDTO().validate(individualDTO, bindingResult);
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
         }
         individualService.save(individualDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -129,17 +130,14 @@ public class IndividualController {
     public ResponseEntity<Object> editOldIndividual(@RequestBody @Valid IndividualDTO individualDTO,
                                                     BindingResult bindingResult) {
         new IndividualDTO().validate(individualDTO, bindingResult);
-        if (findIndividualbyId(individualDTO.getId())==null) {
-            if (individualDTO.getId().equals(individualService.findIndividualById(individualDTO.getId()))) {
-                if (bindingResult.hasErrors()) {
-                    return new ResponseEntity<Object>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
-                }
+        if (findIndividualbyId(individualDTO.getId()) != null) {
+            if (bindingResult.hasErrors()) {
+                return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.BAD_REQUEST);
             }
             Object individual = individualService.save(individualDTO);
             return new ResponseEntity<>(individual, HttpStatus.OK);
         }
-        String message = "id not exist";
-        return new ResponseEntity<Object>(message,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
 
