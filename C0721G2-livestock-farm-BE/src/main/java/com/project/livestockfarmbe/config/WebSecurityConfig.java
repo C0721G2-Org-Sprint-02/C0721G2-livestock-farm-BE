@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("CUSTOMER", "EMPLOYEE", "ADMIN")
                 .and().authorizeRequests().antMatchers("/api/customers/**")
                 .hasAnyRole("EMPLOYEE", "ADMIN")
-                .and().authorizeRequests().antMatchers("/api/**", "/api/cages/**").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/api/**","api/employee/**", "/api/cages/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
