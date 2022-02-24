@@ -159,7 +159,7 @@ public class EmployeeController {
 
     //DoanhNV edit
     @PatchMapping(value = "/edit/{id}")
-    public ResponseEntity<Object> updateEmployee(@RequestBody @Valid EmployeeEditDTO employeeEditDTO,
+    public ResponseEntity<Object> updateEmployee(@RequestBody @Valid EmployeeDTO EmployeeDTO,
                                                  BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -175,19 +175,19 @@ public class EmployeeController {
 //        }
 
         Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeEditDTO, employee);
+        BeanUtils.copyProperties(EmployeeDTO, employee);
 
         // Set role
-        Role role = roleService.getRoleById(employeeEditDTO.getRoleDTO());
+        Role role = roleService.getRoleById(EmployeeDTO.getRoleDTO());
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
         AppUser appUser = new AppUser();
         appUser.setRoles(roles);
-        appUser.setUsername(employeeEditDTO.getEmail());
+        appUser.setUsername(EmployeeDTO.getEmail());
         employee.setAppUser(appUser);
 
-        this.iEmployeeService.saveEmployeeDTO(employee);
+        this.iEmployeeService.saveEmployee(employee);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 }

@@ -1,9 +1,12 @@
 package com.project.livestockfarmbe.controller;
 
 import com.project.livestockfarmbe.dto.NewsDTO;
+import com.project.livestockfarmbe.dto.NewsEditDTO;
 import com.project.livestockfarmbe.dto.TypeOfNewsDTO;
+import com.project.livestockfarmbe.model.employee.Employee;
 import com.project.livestockfarmbe.model.news.News;
 import com.project.livestockfarmbe.model.news.TypeOfNews;
+import com.project.livestockfarmbe.service.employee.IEmployeeService;
 import com.project.livestockfarmbe.service.news.INewsService;
 import com.project.livestockfarmbe.service.news.ITypeOfNewsService;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +35,9 @@ public class NewsController {
     @Autowired
     private ITypeOfNewsService typeOfNewsService;
 
+    @Autowired
+    private IEmployeeService employeeService;
+
     // TaiVD 1.3 Show news detail
     @GetMapping("/{id}")
     public ResponseEntity<News> findNewById(@PathVariable(value = "id") String id) {
@@ -42,7 +48,7 @@ public class NewsController {
     }
 
     // TaiVD 1.3 List of news
-    @GetMapping("")
+    @GetMapping("/list")
     public ResponseEntity<Page<News>> showAllNews(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "") String title,
@@ -109,10 +115,11 @@ public class NewsController {
         news.setTypeOfNews(typeOfNews);
 
 
-//        // Set Employee
-//        Employee employee = new Employee();
-//        System.out.println(employee.toString());
-//        employee.setId(newsDTO.getEmployee().getId());
+        //  Set Employee
+        Employee employee = new Employee();
+        System.out.println(employee.toString());
+        employee.setId(newsDTO.getEmployeeId());
+        news.setEmployee(employee);
 
         // Set datetime create
         news.setPostDate(LocalDateTime.now());
@@ -123,7 +130,7 @@ public class NewsController {
 
     // ThinhTP 2.2.2 Edit news
     @PatchMapping("/edit/{id}")
-    public ResponseEntity<Object> editNews(@RequestBody @Valid NewsDTO newsDTO,
+    public ResponseEntity<Object> editNews(@RequestBody @Valid NewsEditDTO newsDTO,
                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
@@ -135,15 +142,9 @@ public class NewsController {
         typeOfNews.setId(newsDTO.getTypeOfNewsDTO().getId());
         news.setTypeOfNews(typeOfNews);
 
-        news.setImage(newsDTO.getImage());
-        //Xử lí chuổi contend
-        String s1 = newsDTO.getContent();
-        String replaceString = s1.replace("<p>", "");
-        news.setContent(replaceString);
-        // Set Employee
-        // Employee employee = new Employee();
-        //employee.setId(newsDTO.getEmployee().getId());
+//        news.setImage(newsDTO.getImage());
 
+        //Set time
         news.setPostDate(LocalDateTime.now());
         System.out.println(news);
         System.out.println(newsDTO.toString());
