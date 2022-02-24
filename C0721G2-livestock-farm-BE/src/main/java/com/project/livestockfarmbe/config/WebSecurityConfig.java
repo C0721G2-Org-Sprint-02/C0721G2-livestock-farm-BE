@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 // Các trang không yêu cầu login
-                .antMatchers("/api/public/**", "/api/news/**",  "/**/*.jpg", "/**/*.png")
+                .antMatchers("/api/public/**", "/api/news/**",  "/**/*.jpg", "/**/*.png","/api/buy_individual/**")
                 .permitAll()
                 //phan quyen
                 .and().authorizeRequests().antMatchers( "/api/customers/edit-customer/**",
@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("CUSTOMER", "EMPLOYEE", "ADMIN")
                 .and().authorizeRequests().antMatchers("/api/customers/**")
                 .hasAnyRole("EMPLOYEE", "ADMIN")
-                .and().authorizeRequests().antMatchers("/api/**","api/employee/**").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/api/**","api/employee/**", "/api/cages/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
