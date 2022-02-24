@@ -1,7 +1,11 @@
 use livestock_farm;
+ALTER TABLE `livestock_farm`.`employees`
+ADD FULLTEXT INDEX `full_text_search` (`address`, `email`, `id_card`, `name`, `phone_number`) VISIBLE;
+
 INSERT INTO `livestock_farm`.`roles` (`id`, `name`) VALUES ('1', 'ROLE_ADMIN');
 INSERT INTO `livestock_farm`.`roles` (`id`, `name`) VALUES ('2', 'ROLE_EMPLOYEE');
 INSERT INTO `livestock_farm`.`roles` (`id`, `name`) VALUES ('3', 'ROLE_CUSTOMER');
+
 INSERT INTO `livestock_farm`.`app_users` (`id`, `deleted`, `is_enabled`, `password`, `username`, `verification_code`) VALUES ('06a7978d-ad4a-4b96-95d2-271bd641caa9', 0, 1, '$2a$12$.Mfx0vhTiWRZL723RZD4.uROZM6QVKpYJ4ZM.JSuc54IJVMz7rJAi', 'nhanvien1', null);
 INSERT INTO `livestock_farm`.`app_users` (`id`, `deleted`, `is_enabled`, `password`, `username`, `verification_code`) VALUES ('08459377-63c5-4794-b69c-f665ecf00c8a', 0, 1, '$2a$12$.Mfx0vhTiWRZL723RZD4.uROZM6QVKpYJ4ZM.JSuc54IJVMz7rJAi', 'nhanvien2', null);
 INSERT INTO `livestock_farm`.`app_users` (`id`, `deleted`, `is_enabled`, `password`, `username`, `verification_code`) VALUES ('159c674c-d64c-4649-abc0-68564e05dfa0', 0, 1, '$2a$12$.Mfx0vhTiWRZL723RZD4.uROZM6QVKpYJ4ZM.JSuc54IJVMz7rJAi', 'admin1', null);
@@ -18,30 +22,48 @@ INSERT INTO `livestock_farm`.`app_users_roles` (`app_users_id`, `roles_id`) VALU
 INSERT INTO `livestock_farm`.`app_users_roles` (`app_users_id`, `roles_id`) VALUES ('ae9256bc-8803-11ec-a8a3-0242ac120002', '2');
 INSERT INTO `livestock_farm`.`app_users_roles` (`app_users_id`, `roles_id`) VALUES ('b3b25ee4-8803-11ec-a8a3-0242ac120002', '2');
 INSERT INTO `livestock_farm`.`app_users_roles` (`app_users_id`, `roles_id`) VALUES ('bac98b30-8803-11ec-a8a3-0242ac120002', '1');
+
+
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`,`image`) VALUES 
+('NV-1001', 'Đà Nẵng', '1991-1-1', 0, 'nguyenan@gmail.com', 1, '123456789', 'Nguyển Văn An', '0901234560', '06a7978d-ad4a-4b96-95d2-271bd641caa9','https://cdn.pixabay.com/photo/2018/08/28/12/41/avatar-3637425_960_720.png');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES 
+('NV-1002', 'Quảng Nam', '1991-2-1', 0, 'truongbinh@gmail.com', 1, '123456788', 'Trương Văn Bình', '0901234561', '08459377-63c5-4794-b69c-f665ecf00c8a','https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT12cP23udqvCqHW_2oAvK257g3oVQkv23tOumxtpfFOhHi8a5B');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES 
+('NV-1003', 'Hà Nội', '1992-1-14', 0, 'nguyencam@gmail.com', 0, '123456787', 'Nguyễn Thi Cẩm', '0901234562', '159c674c-d64c-4649-abc0-68564e05dfa0','https://blogger.googleusercontent.com/img/a/AVvXsEhnJ9AdBaX6lZYklYVX5EDdT90Dwikgl6NdPXZhProJECWpUE4EkVfKEJZBqTwPrfV1AGcknf36wbAU_HlXcbmSujv33e2ZGKm3AkUejOZer-DVLgRnxeZjztXZkKz26WB8Cq9gC-WKTpCrMErDG0Kj2KcyUW4zKJx_t9WtDb9YlIW4vO3he_luUIsyaA=s694');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES
+ ('NV-1004', 'Ho Chi Minh', '1993-1-11', 0, 'hoangdinh@gmail.com', 1, '123456786', 'Hoàng Văn Định', '0901234563', '17bab4b8-c4cd-44f4-a86a-1cd50cfa4925','https://www.hollywoodreporter.com/wp-content/uploads/2020/03/ryan_gosling_-_getty_-_h_2020_.jpg?w=681&h=383&crop=1');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES 
+('NV-1005', 'Đà Nẵng', '1992-1-12', 0, 'trandung@gmail.com', 1, '123456785', 'Trần Hữu Dũng', '0901234564', '96d4d3a6-8803-11ec-a8a3-0242ac120002','https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES
+ ('NV-1006', 'Nha Trang', '1994-1-1', 0, 'ledung@gmail.com', 0, '123456784', 'Lê Thị Dung', '0901234563', 'ae9256bc-8803-11ec-a8a3-0242ac120002','https://media.glamour.com/photos/595e9e2b07290f1509fa1a8a/master/w_2560%2Cc_limit/EMMA%2520STONE.jpg');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES 
+('NV-1007', 'Quảng Ngãi', '1993-1-14', 0, 'nguyenem123@gmail.com', 0, '123456783', 'Nguyễn Lan Anh', '0901234567', 'b3b25ee4-8803-11ec-a8a3-0242ac120002','https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRN5GNGGGXAIB8waOtJB5TSfzUVsl2WEXYMrBSpCKL3jUt7FBdn');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES
+ ('NV-1009', 'Bình Định', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456789', 'Hồ Văn Đại', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002','https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRN5GNGGGXAIB8waOtJB5TSfzUVsl2WEXYMrBSpCKL3jUt7FBdn');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES 
+('NV-1010', 'Quảng Trị', '1992-1-12', 0, 'trandung@gmail.com', 1, '123456775', 'Trần Hữu Dũng', '0901234554', '96d4d3a6-8803-11ec-a8a3-0242ac120002','https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg');
+INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) VALUES
+ ('NV-1011', 'Đà Nẵng', '1993-1-11', 0, 'tungnui@gmail.com', 1, '123456776', 'Lê Quốc Tùng', '0901234555', '17bab4b8-c4cd-44f4-a86a-1cd50cfa4925','https://www.hollywoodreporter.com/wp-content/uploads/2020/03/ryan_gosling_-_getty_-_h_2020_.jpg?w=681&h=383&crop=1');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1001', 'Da Nang', '1991-1-1', 0, 'nguyena@gmail.com', 1, '123456710', 'Nguyen Van Nam', '0901234567', '06a7978d-ad4a-4b96-95d2-271bd641caa9');
+VALUES ('NV-1012', 'Da Nang', '1991-1-1', 0, 'nguyena@gmail.com', 1, '123456710', 'Nguyen Van Nam', '0901234567', '06a7978d-ad4a-4b96-95d2-271bd641caa9','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1002', 'Quang Nam', '1991-2-1', 0, 'nguyenb@gmail.com', 1, '123456711', 'Nguyen Hữu Thắng', '0901234567', '08459377-63c5-4794-b69c-f665ecf00c8a');
+VALUES ('NV-1013', 'Quang Nam', '1991-2-1', 0, 'nguyenb@gmail.com', 1, '123456711', 'Nguyen Hữu Thắng', '0901234567', '08459377-63c5-4794-b69c-f665ecf00c8a','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`)
- VALUES ('NV-1003', 'Ha Noi', '1992-1-14', 0, 'nguyenc@gmail.com', 0, '123456712', 'Nguyen Như Ngọc', '0901234567', '159c674c-d64c-4649-abc0-68564e05dfa0');
+ VALUES ('NV-1014', 'Ha Noi', '1992-1-14', 0, 'nguyenc@gmail.com', 0, '123456712', 'Nguyen Như Ngọc', '0901234567', '159c674c-d64c-4649-abc0-68564e05dfa0','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1004', 'Ho Chi Minh', '1993-1-11', 0, 'nguyend@gmail.com', 1, '123456713', 'Lê Bá Thiện', '0901234567', '17bab4b8-c4cd-44f4-a86a-1cd50cfa4925');
+VALUES ('NV-1015', 'Ho Chi Minh', '1993-1-11', 0, 'nguyend@gmail.com', 1, '123456713', 'Lê Bá Thiện', '0901234567', '17bab4b8-c4cd-44f4-a86a-1cd50cfa4925','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`)
- VALUES ('NV-1005', 'Ho Chi Minh', '1992-1-12', 0, 'trand@gmail.com', 1, '123456714', 'Tran Văn Tài', '0901234567', '96d4d3a6-8803-11ec-a8a3-0242ac120002');
+ VALUES ('NV-1016', 'Ho Chi Minh', '1992-1-12', 0, 'trand@gmail.com', 1, '123456714', 'Tran Văn Tài', '0901234567', '96d4d3a6-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`)
- VALUES ('NV-1006', 'Ho Chi Minh', '1994-1-1', 0, 'led@gmail.com', 0, '123456715', 'Huỳnh Hải Hà', '0901234567', 'ae9256bc-8803-11ec-a8a3-0242ac120002');
+ VALUES ('NV-1017', 'Ho Chi Minh', '1994-1-1', 0, 'led@gmail.com', 0, '123456715', 'Huỳnh Hải Hà', '0901234567', 'ae9256bc-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`)
- VALUES ('NV-1007', 'Da Nang', '1993-1-14', 0, 'nguyen123@gmail.com', 0, '123456716', 'Nguyen Nam Trân', '0901234567', 'b3b25ee4-8803-11ec-a8a3-0242ac120002');
+ VALUES ('NV-1018', 'Da Nang', '1993-1-14', 0, 'nguyen123@gmail.com', 0, '123456716', 'Nguyen Nam Trân', '0901234567', 'b3b25ee4-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1008', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456717', 'Lê Thanh Tùng', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002');
+VALUES ('NV-1019', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456717', 'Lê Thanh Tùng', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1012', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456718', 'Hoàng Thanh Hải', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002');
+VALUES ('NV-1020', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456718', 'Hoàng Thanh Hải', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1009', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456719', 'Nguyễn Thanh Hải', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002');
-INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1010', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456720', 'Lê Thanh Đạt', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002');
-INSERT INTO `livestock_farm`.`employees` (`id`, `address`, `date_of_birth`, `deleted`, `email`, `gender`, `id_card`, `name`, `phone_number`, `app_user_id`) 
-VALUES ('NV-1011', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456724', 'Hà Tú Anh', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002');
+VALUES ('NV-1021', 'Da Nang', '1996-3-1', 0, 'hovand@gmail.com', 1, '123456719', 'Nguyễn Thanh Hải', '0901234567', 'bac98b30-8803-11ec-a8a3-0242ac120002','https://img.freepik.com/darmowe-wektory/awatar-postaci-biznesmen-na-bialym-tle_24877-60111.jpg?size=338&ext=jpg&ga=GA1.1.1290562972.1643500800');
 
 insert into type_of_news value (1, 'Chăn nuôi'),(2, 'Công nghệ');
 insert into news value
@@ -105,16 +127,9 @@ Bà Trương Thị Kiểm ở xã Vân Hòa (huyện Ba Vì) cho biết, gia đ�
 Theo thông tin cập nhật từ Hệ thống quản lý dịch bệnh động vật Việt Nam (VAHIS) - Cục Thú y, tình hình dịch bệnh gia súc, gia cầm đang diễn biến rất phức tạp, đặc biệt là các bệnh Dịch tả lợn Châu Phi, bệnh VDNC trâu bò, bệnh Cúm gia cầm; tại tỉnh ta mặc dù dịch bệnh trên đàn gia súc, gia cầm, động vật thủy sản cơ bản đã được kiểm soát hiệu quả. Tuy nhiên, nhận định nguy cơ các loại dịch bệnh nguy hiểm trên trên đàn vật nuôi vào đầu năm 2022 (vụ Đông Xuân) là rất cao, do một số nguyên nhân như sau: Tổng đàn vật nuôi, mật độ chăn nuôi tăng cao, trong đó chăn nuôi nhỏ lẻ vẫn chiếm tỷ trọng lớn, các biện pháp chăn nuôi an toàn sinh học, vệ sinh, sát trùng phòng bệnh còn hạn chế ở nhiều nơi. Các hoạt động buôn bán, vận chuyển, giết mổ động vật tăng mạnh để phục vụ nhu cầu trong thời gian trước, trong và sau Tết Nhâm Dần. Các loại mầm bệnh nguy hiểm tồn tại trong môi trường nhiều, khi gặp điều kiện thuận lợi sẽ xâm nhập gây bệnh, đặc biệt là vi rút gây bệnh DTLCP, VDNC trâu bò, nhất là các chủng Cúm gia cầm có tỷ lệ lưu hành rất cao (tỷ lệ lưu hành vi rút cúm A/H5N6, A/H5N8 trên địa bàn tỉnh năm 2021 là 5,25%). Đặc biệt thời tiết thay đổi chuyển mùa, làm giảm sức đề kháng của đàn vật nuôi và tạo thuận lợi cho mầm bệnh tồn tại, phát tán diện rộng và gây ra dịch bệnh.',
 0,'https://nguoichannuoi.vn/upload_images/images/tin-tuc-su-kien-chan-nuoi/tiem-cho-ga-th-1.jpg','2022-02-10',
 'Thanh Hóa: Triển khai các biện pháp phòng, chống dịch bệnh động vật trước, trong và sau Tết Nguyên đán Nhâm Dần 2022','NV-1002',1)
-
 ;
---  select n.id, n.content, n.title, n.image, n.post_date, n.employee_id, n.type_of_news_id 
--- 		from news n 
---         join employees e on n.employee_id = e.id
--- 		join type_of_news t on n.type_of_news_id = t.id 
--- 		where (title like  concat('%',trim(''),'%')
---         or e.`name` like  concat('%',trim('Đạt'),'%')
--- 		or t.`name` like  concat('%',trim(''),'%'))
---         and deleted =false
+
+
 insert into type_of_cage values(1,'Heo'), (2,'Gà'),(3,'Vịt'),(4,'Bò'),(5,'Dê');
 insert into cages values('CA-1000','2021-01-10',0,'2021-12-15',100,'NV-1001',1),
 ('CA-1001','2021-01-10',0,'2021-12-15',100,'NV-1001',1),
@@ -132,7 +147,9 @@ insert into cages values('CA-1000','2021-01-10',0,'2021-12-15',100,'NV-1001',1),
 ('CA-1013','2021-03-21',0,'2021-12-29',100,'NV-1012',5),
 ('CA-1014','2021-02-08',0,'2021-11-09',100,'NV-1001',5),
 ('CA-1015','2021-02-13',0,'2021-11-23',100,'NV-1002',5);
-insert into individuals(id,cage_id,date_in,date_out,`status`,weight,deleted) values('IN-1000','CA-1000','2021-01-11','2021-12-01',0,50.5,0),
+
+insert into individuals(id,cage_id,date_in,date_out,`status`,weight,deleted) values
+('IN-1000','CA-1000','2021-01-11','2021-12-01',0,50.5,0),
 ('IN-1001','CA-1001','2021-01-11','2021-12-01',0,52.3,0),
 ('IN-1002','CA-1002','2021-01-11','2021-12-01',1,51.2,0),
 ('IN-1003','CA-1003','2021-01-11','2021-12-01',0,50.2,0),
@@ -152,8 +169,9 @@ insert into individuals(id,cage_id,date_in,date_out,`status`,weight,deleted) val
 ('IN-1017','CA-1001','2021-01-11','2021-12-01',0,48.2,0),
 ('IN-1018','CA-1002','2021-01-11','2021-12-01',0,50.3,0),
 ('IN-1019','CA-1003','2021-01-11','2021-12-01',1,51.2,0);
-insert into treatements(id,deleted, doctor, kind_of_disease, medicine, note, quantily, treatement_date, individual_id) 
-values('TR-1000', 0, 'Lê Quốc Tùng', 'Phòng LMHM', 'PRRS', 'Cho uống lại sau 3 tháng',1, '2021-01-11', 'IN-1000'),
+
+insert into treatements(id,deleted, doctor, kind_of_disease, medicine, note, quantily, treatement_date, individual_id) values
+('TR-1000', 0, 'Lê Quốc Tùng', 'Phòng LMHM', 'PRRS', 'Cho uống lại sau 3 tháng',1, '2021-01-11', 'IN-1000'),
 ('TR-1001', 0, 'Trần Nga My', 'Phòng H1N1', 'PMWS', 'Cho uống lại sau 6 tháng',3, '2021-01-11', 'IN-1001'),
 ('TR-1002', 0, 'Lê Quốc Tùng', 'Phòng LMHM', 'PRRS', 'Cho uống lại sau 3 tháng',1, '2021-01-12', 'IN-1002'),
 ('TR-1003', 0, 'Ngô Văn Tuấn', 'Chữa huyết trùng lợn', 'NOVMAE E1', 'Cho uống lại sau 1 năm',2, '2021-01-12', 'IN-1003'),
@@ -174,3 +192,15 @@ values('TR-1000', 0, 'Lê Quốc Tùng', 'Phòng LMHM', 'PRRS', 'Cho uống lạ
 ('TR-1018', 0, 'Trương Văn Quyết', 'Phòng tai xanh', 'TX M2', 'Cho uống lại sau 8 tháng',5, '2021-01-17', 'IN-1001'),
 ('TR-1019', 0, 'Trương Văn Quyết', 'Phòng tai xanh', 'TX M2', 'Cho uống lại sau 8 tháng',5, '2021-01-17', 'IN-1002'),
 ('TR-1020', 0, 'Trương Văn Quyết', 'Phòng tai xanh', 'TX M2', 'Cho uống lại sau 8 tháng',5, '2021-01-17', 'IN-1003');
+
+INSERT INTO `buy_individuals` VALUES 
+('BI-0001','Đà Nẵng','Tôi cần mua 10 con bò','tran@gmail.com','Nguyen Van Tran','0999999988'),
+('BI-0002','Đà Nẵng','Tôi cần mua 10 con heo','b@gmail.com','Nguyen Van Bon','0999999982'),
+('BI-0028','Đà Nẵng','Tôi cần mua 10 con vịt','doanh@gmail.com','Nguyen Van Doanh','0999999989'),
+('BI-0029','Quãng Nam','Tôi cần mua 10 con dê','thinh@gmail.com','Nguyen Van Thịnh','0999999911'),
+('BI-0030','Quãng Trị','Tôi cần mua 10 con heo','tai@gmail.com','Nguyen Van Tài','0999999912'),
+('BI-0031','Quảng Nam','Tôi cần mua 10 con gà','thien@gmail.com','Nguyen Van Thiện','0999999913'),
+('BI-0032','Quảng Nam','Tôi cần mua 10 con heo','khai@gmail.com','Nguyen Van Khai','0999999913'),
+('BI-0033','Quảng Nam','Tôi cần mua 10 con heo','hien@gmail.com','Nguyen Van Hien','0999999914'),
+('BI-0034','Quảng Nam','Tôi cần mua 10 con dê','hung@gmail.com','Nguyen Van Hung','0999999915'),
+('BI-0035','Đà Nẵng','Tôi cần mua 10 con bò','nghia@gmail.com','Nguyen Van Nghia','0999999916');
