@@ -28,4 +28,8 @@ public interface INewsRepository extends JpaRepository< News, String > {
     // TaiVD 1.3 Show news detail
     @Query(value = " select * from news where id =:id and deleted = false ", nativeQuery = true)
     Optional< News > findNewsById(@Param("id") String id);
+
+    //Đây là phần của Thịnh
+
+
 }

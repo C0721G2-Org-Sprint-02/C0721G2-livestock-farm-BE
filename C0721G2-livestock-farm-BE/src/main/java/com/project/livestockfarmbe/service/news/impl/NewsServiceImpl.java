@@ -26,4 +26,14 @@ public class NewsServiceImpl implements INewsService {
     public Page< News > findAllNews(String title, String typeNews, Pageable pageable) {
         return newsRepository.findAllNews(title,typeNews, pageable);
     }
+
+    @Override
+    public void deleteNewsById(String id) {
+        newsRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveNews(News news) {
+        newsRepository.save(news);
+    }
 }

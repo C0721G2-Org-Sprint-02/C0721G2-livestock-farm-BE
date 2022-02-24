@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -19,7 +16,8 @@ import java.io.UnsupportedEncodingException;
 
 
 @RestController
-@RequestMapping(value = "/buy_individual")
+@RequestMapping(value = "/api/buy_individual")
+@CrossOrigin("http://localhost:4200")
 public class BuyIndividualController {
     @Qualifier("buyIndividualServiceImpl")
     @Autowired
