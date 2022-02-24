@@ -57,6 +57,11 @@ public class CageServiceImpl implements ICageService {
         return this.iCageRepository.searchCageByEmployeeNameOrDayOponeOrTypeOfCage(pageable,search);
     }
 
+    @Override
+    public List<Cage> getCages() {
+        return this.iCageRepository.findAll();
+    }
+
 
     public Boolean checkCageExist(String id) {
         return iCageRepository.existsById(id);

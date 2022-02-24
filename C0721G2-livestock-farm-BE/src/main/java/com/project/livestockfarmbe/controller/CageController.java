@@ -186,4 +186,13 @@ public class CageController {
         cageService.saveCage(cage);
         return new ResponseEntity<>(cage, HttpStatus.OK);
     }
+    //cai nay cua thien
+    @GetMapping(value = "/listCage")
+    public ResponseEntity<List<Cage>> getCages() {
+        List<Cage> cagesList = cageService.getCages();
+        if(cagesList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(cagesList,HttpStatus.OK);
+    }
 }
