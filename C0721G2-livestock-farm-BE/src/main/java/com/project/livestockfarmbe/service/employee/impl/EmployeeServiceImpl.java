@@ -2,6 +2,7 @@ package com.project.livestockfarmbe.service.employee.impl;
 
 import com.project.livestockfarmbe.dto.EmployeeServiceDTO;
 import com.project.livestockfarmbe.model.employee.Employee;
+import com.project.livestockfarmbe.model.news.TypeOfNews;
 import com.project.livestockfarmbe.repository.employee.IEmployeeRepository;
 import com.project.livestockfarmbe.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,4 +56,13 @@ public class EmployeeServiceImpl implements IEmployeeService {
         iEmployeeRepository.save(employee);
     }
 
+    @Override
+    public void saveEmployeeDTO(Employee employee) {
+        iEmployeeRepository.save(employee);
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return this.iEmployeeRepository.findAll();
+    }
 }

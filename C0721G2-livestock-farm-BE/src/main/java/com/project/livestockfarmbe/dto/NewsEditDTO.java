@@ -1,16 +1,11 @@
 package com.project.livestockfarmbe.dto;
 
-import com.project.livestockfarmbe.model.employee.Employee;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-public class NewsDTO {
-
+public class NewsEditDTO {
     private String id;
-
-    private String employeeId;
     @NotBlank(message = "Title không được bỏ trống")
     @Size(min = 20, max = 300, message = "Tiêu đề phải từ 20 đến 300 ký tự")
     private String title;
@@ -20,8 +15,8 @@ public class NewsDTO {
     private TypeOfNewsDTO typeOfNewsDTO;
     private String image;
 
-    public NewsDTO() {
 
+    public NewsEditDTO() {
     }
 
     public String getId() {
@@ -30,14 +25,6 @@ public class NewsDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getTitle() {
@@ -79,5 +66,4 @@ public class NewsDTO {
     public void setImage(String image) {
         this.image = image;
     }
-
 }
