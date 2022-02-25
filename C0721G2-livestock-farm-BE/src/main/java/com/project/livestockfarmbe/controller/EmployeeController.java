@@ -158,33 +158,38 @@ public class EmployeeController {
     }
 
     //DoanhNV edit
-    @PatchMapping(value = "/edit/{id}")
-    public ResponseEntity<Object> updateEmployee(@RequestBody @Valid EmployeeDTO EmployeeDTO,
+    @PatchMapping(value = "/edit")
+    public ResponseEntity<Object> updateEmployee(@RequestBody @Valid EmployeeEditDTO employeeEditDTO,
                                                  BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
+            System.out.println("test");
+            System.out.println("error:" + bindingResult.getFieldError());
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
 
         }
-        //kiểm tra email có bị trùng lặp hay không
-        //Map<String, String> listErrors = new HashMap<>();
-//        if (appUserService.existsByUserName(employeeDTO.getEmail())) {
-//
-//            listErrors.put("errorEmail", "Email đã có người sử dụng");
-//            return ResponseEntity.badRequest().body(listErrors);
-//        }
+//        kiểm tra email có bị trùng lặp hay không
+        Map<String, String> listErrors = new HashMap<>();
+        if (appUserService.existsByUserName(employeeEditDTO.getEmail())) {
+            System.out.println("test exits");
+            listErrors.put("errorEmail", "Email đã có người sử dụng");
+            return ResponseEntity.badRequest().body(listErrors);
+        }
 
         Employee employee = new Employee();
-        BeanUtils.copyProperties(EmployeeDTO, employee);
+        BeanUtils.copyProperties(employeeEditDTO, employee);
+        System.out.println("test1");
 
         // Set role
-        Role role = roleService.getRoleById(EmployeeDTO.getRoleDTO());
+        Role role = roleService.getRoleById(employeeEditDTO.getRoleDTO());
         Set<Role> roles = new HashSet<>();
         roles.add(role);
+        System.out.println("appuser2");
 
-        AppUser appUser = new AppUser();
+        AppUser appUser = this.appUserService.getAppUserByEmployee(employeeEditDTO.getId());
         appUser.setRoles(roles);
-        appUser.setUsername(EmployeeDTO.getEmail());
+        appUser.setUsername(employeeEditDTO.getEmail());
+        System.out.println("appuser" + appUser.toString());
         employee.setAppUser(appUser);
 
         this.iEmployeeService.saveEmployee(employee);
