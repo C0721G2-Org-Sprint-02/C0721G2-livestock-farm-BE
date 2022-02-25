@@ -50,15 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 // Các trang không yêu cầu login
-                .antMatchers("/api/public/**", "/api/news/**",  "/**/*.jpg", "/**/*.png","/api/buy_individual/**")
+                .antMatchers("/api/public/**", "/api/news/list", "/api/news/N-**", "/**/*.jpg", "/**/*.png","/api/buy_individual/**")
                 .permitAll()
                 //phan quyen
-                .and().authorizeRequests().antMatchers( "/api/customers/edit-customer/**",
-                "/api/customers/KH-**","/api/public/password", "/api/real-estate-new/**", "/api/real-estate-related/**")
-                .hasAnyRole("CUSTOMER", "EMPLOYEE", "ADMIN")
-                .and().authorizeRequests().antMatchers("/api/customers/**")
+                .and().authorizeRequests().antMatchers("/api/news/**","/api/cages/**", "/api/individual/**","/api/treatement/**")
                 .hasAnyRole("EMPLOYEE", "ADMIN")
-                .and().authorizeRequests().antMatchers("/api/**","api/employee/**", "/api/cages/**").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/api/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
