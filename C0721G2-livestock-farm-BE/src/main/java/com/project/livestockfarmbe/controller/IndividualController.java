@@ -46,7 +46,7 @@ public class IndividualController {
             @RequestParam(defaultValue = "") String dateIn,
             @RequestParam(defaultValue = "") String dateOut,
             @RequestParam(defaultValue = "") String status) {
-
+        
         int size = 5;
         Page<Individual> individualPage = this.individualService.findAllIndividual(page, size, sortField,
                 sortDirection, individualId, cageId, dateIn, dateOut, status);
@@ -82,7 +82,7 @@ public class IndividualController {
     public ResponseEntity<Object> readExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
         XSSFSheet worksheet = workbook.getSheetAt(0);
-        for (int i = 0; i < worksheet.getPhysicalNumberOfRows(); i++) {
+        for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
             Individual individual = new Individual();
             XSSFRow row = worksheet.getRow(i);
             String cageId = row.getCell(0).getStringCellValue();
