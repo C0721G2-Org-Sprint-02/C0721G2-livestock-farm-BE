@@ -1,9 +1,6 @@
 package com.project.livestockfarmbe.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class EmployeeEditDTO {
@@ -14,9 +11,10 @@ public class EmployeeEditDTO {
     private String name;
     @NotBlank(message = "Không được bỏ trống email")
 //    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-z]{2,6}$")
-    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+//    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
 //    @Pattern(regexp = "^[a-z][a-z0-9_\.]{5,32}+@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$")
 //    @Size(min = 8, max = 40, message = "Email phải từ 6 đến 40 ký tự")
+    @Email
     private String email;
     @NotBlank(message = "Không được bỏ trống số điện thoại")
     @Pattern(regexp = "^(0?)(3[2-9]|5[6|89]|7[0|6-9]|8[0-6|89]|9[0-4|6-9])[0-9]{7}$", message = "Phải nhập đúng định dạng số điện thoại")

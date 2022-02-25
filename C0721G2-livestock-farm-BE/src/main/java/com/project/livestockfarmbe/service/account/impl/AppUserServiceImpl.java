@@ -207,6 +207,6 @@ public class AppUserServiceImpl implements IAppUserService {
 
     // DoanhNV kiểm tra username
     public boolean existsByUserName(String username) {
-        return appUserRepository.existsByUsername(username);
+        return appUserRepository.existsAppUserByUsername(username);
     }
 }

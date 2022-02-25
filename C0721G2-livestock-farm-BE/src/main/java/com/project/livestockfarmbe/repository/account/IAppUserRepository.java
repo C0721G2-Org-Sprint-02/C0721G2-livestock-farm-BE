@@ -64,5 +64,5 @@ public interface IAppUserRepository extends JpaRepository<AppUser, UUID> {
     AppUser getAppUserByEmployee(String id);
 
     // DoanhNV
-    boolean existsByUsername(String username);
+    boolean existsAppUserByUsername(String username);
 }
